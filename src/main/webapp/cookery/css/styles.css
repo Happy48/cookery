@@ -97,7 +97,7 @@ body{
 }
 
 .toggle-menu li {
-  width: 8%;
+  width: 7%;
   display: inline-block;
   margin-left: 1em;
  /*height:30px;*/
@@ -108,7 +108,7 @@ body{
   color: #fff;
   display: block;
   text-align: center;
-  font-size: 20px;
+  font-size: 19px;
   text-transform: uppercase;
   border-bottom: 2px solid transparent;
   -webkit-transition: linear 0.5s all;
@@ -175,4 +175,13 @@ body{
     -webkit-animation: myMove 0.8s linear infinite alternate;
     -o-animation: myMove 0.8s linear infinite alternate;
     animation: myMove 0.8s linear infinite alternate;
+}
+
+#profile_icon{
+    float: right;
+    margin-right:2em;
+    cursor:pointer;
+    width:3em;
+    height:3em;
+    border-radius:50%;
 }

@@ -33,6 +33,7 @@
 	<!-- animation-effect -->
 <link href="css/animate.min.css" rel="stylesheet"> 
 <script src="js/wow.min.js"></script>
+<script src="js/jquery.min.js"></script>
 <script>
  new WOW().init();
 </script>
@@ -58,10 +59,11 @@
 		<ul class="toggle-menu">
 			<li><a  href="index.html">首页</a></li>
 			<li><a  href="allblogs.html">笔记广场</a></li>
-			<li><a  href="login.html">登录</a></li>
+			<li><a  name="login" id="login_a">登录</a></li>
 			<li><a  href="register.html">注册</a></li>
 		</ul>
 		</div>
+
 	</div>
 
 	<!-- start search-->	
@@ -300,5 +302,32 @@
         cxt.stroke();
     }
     drawDown();
+
+	// 用户未登录时导航栏样式
+	$(document).on("click","#logout_a",function(){
+        document.getElementById('icon_div').innerHTML="<ul class=\"toggle-menu\">" +
+            "<li><a  href=\"index.html\">首页</a></li>" +
+            "<li><a  href=\"allblogs.html\">笔记广场</a></li>" +
+            "<li><a  name=\"login\" id=\"login_a\">登录</a></li>" +
+            "<li><a  href=\"register.html\">注册</a></li>" +
+            "</ul>";
+	});
+	// 用户登录时导航栏样式
+	$(document).on("click","#login_a",function(){
+        document.getElementById('icon_div').innerHTML="<ul class=\"toggle-menu\">" +
+            "<li><a  href=\"index.html\">首页</a></li>" +
+            "<li><a  href=\"allblogs.html\">笔记广场</a></li>" +
+            "<li><a  href=\"events.html\">我的笔记</a></li>" +
+            "<li><a  href=\"focus.html\">我的关注</a></li>" +
+            "<li><a  href=\"edit.html\">写笔记</a></li>" +
+            "<img src=\"http://img.mukewang.com/58492fe600012e8e01800180-200-200.jpg\" id=\"profile_icon\" alt=\"\">" +
+            "<li><a  name=\"logout\" id='logout_a'>登出</a></li>" +
+            "</ul>";
+	});
+
+	$(document).on("click","#profile_icon",function() {
+		self.location="personalInfo.html";
+	});
+
 </script>
 </html>
