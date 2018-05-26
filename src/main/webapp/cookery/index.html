@@ -40,39 +40,40 @@
 
 </head>
 <body>
- <div class="header">
-	<div class="container">
+<div class="header">
+	 <!--头部固定导航栏-->
+	<div class="container navi">
 		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
-			<h2 style="font-family: Helvetica"><a href="index.html"><img src="images/oo.png" alt="">大厨笔记</a></h1>
+			<h2 style="font-family: Helvetica"><a href="index.html"><img src="images/oo.png" alt="">大厨笔记</a></h2>
 		</div>
-		<div class="nav-icon">		
-			<a href="#" class="navicon"></a>
-				<div class="toggle">
-					<ul class="toggle-menu">
-						<li><a class="active" href="index.html">Home</a></li>
-						<li><a  href="menu.html">Menu</a></li>
-						<li><a  href="blog.html">Blog</a></li>
-						<li><a  href="typo.html">Codes</a></li>
-						<li><a  href="events.html">Events</a></li>
-						<li><a  href="contact.html">Contact</a></li>
-					</ul>
-				</div>
-			<script>
-			$('.navicon').on('click', function (e) {
-			  e.preventDefault();
-			  $(this).toggleClass('navicon--active');
-			  $('.toggle').toggleClass('toggle--active');
-			});
-			</script>
+
+		<div class="col-md-3 search">
+			<form>
+				<input type="text" placeholder="搜索笔记/食材" required="" >
+				<input type="submit" value="" >
+			</form>
 		</div>
-	<div class="clearfix"></div>
+
+		<div id="icon_div">
+		<ul class="toggle-menu">
+			<li><a  href="index.html">首页</a></li>
+			<li><a  href="allblogs.html">笔记广场</a></li>
+			<li><a  href="login.html">登录</a></li>
+			<li><a  href="register.html">注册</a></li>
+		</ul>
+		</div>
 	</div>
+
 	<!-- start search-->	
 		<div class="banner">
 			<h2 class="animated wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="500ms" style="font: bold;color: white">雨后 清新 空气</h2>
 			<label></label>
-			<h4 class="animated wow fadeInTop" data-wow-duration="1000ms" data-wow-delay="500ms" style="color: white;">与美食相遇在雨后炎热的五月</h4>
-			<a class="scroll down" href="#content-down"><img src="images/down.png" alt=""></a>
+			<h4 class="animated wow fadeInTop" data-wow-duration="1000ms" data-wow-delay="500ms" style="color: white;">与美食相遇在雨后炎热的六月</h4>
+			<div id="down"><a class="scroll down" href="#content-down">
+				<canvas id="downCanvas" width="50" height="50">你的浏览器不支持canvas，请下载更新版本的浏览器
+				</canvas>
+				</a>
+			</div>
 		</div>
 </div>
 <!--content-->
@@ -81,12 +82,12 @@
 		<div class="container">
 			<div class="content-top">
 				<div class="col-md-4 content-left animated wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="500ms">
-					<h3>五月推荐</h3>
+					<h3>六月推荐</h3>
 					<label><i class="glyphicon glyphicon-menu-up"></i></label>
 					<span>很多选择很多选择</span>
 				</div>
 				<div class="col-md-8 content-right animated wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="500ms">
-					<p>五月有点热五月有点热五月有点热五月有点热五月有点热五月有点热五月有点热五月有点热五月有点热五月有点热五月有点热五月有点热五月有点热五月有点热五月有点热，我们适合做什么菜吃我们适合做什么菜吃我们适合做什么菜吃我们适合做什么菜吃我们适合做什么菜吃我们适合做什么菜吃</p>
+					<p>六月有点六月有点热我们适合做什么菜吃我们适合做什么菜吃我们适合做什么菜吃我们适合做什么菜吃我们适合做什么菜吃我们适合做什么菜吃</p>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
@@ -138,12 +139,12 @@
 		<div class="container">
 			<div class="content-top">
 				<div class="col-md-4 content-left animated wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="500ms">
-					<h3>五月热门</h3>
+					<h3>六月热门</h3>
 					<label><i class="glyphicon glyphicon-menu-up"></i></label>
 					<span>很多热门很多热门</span>
 				</div>
 				<div class="col-md-8 content-right animated wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="500ms">
-					<p>这是五月的热门菜系这是五月的热门菜系这是五月的热门菜系这是五月的热门菜系这是五月的热门菜系这是五月的热门菜系这是五月的热门菜系这是五月的热门菜系这是五月的热门菜系这是五月的热门菜系这是五月的热门菜系这是五月的热门菜系这是五月的热门菜系这是五月的热门菜系这是五月的热门菜系这是五月的热门菜系</p>
+					<p>这是六月的热门菜系这是六月的热门菜系这是六月的热门菜系这是六月的热门菜系这是六月的热门菜系这是六月的热门菜系这是六月的热门菜系这是六月的热门菜系</p>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
@@ -275,4 +276,29 @@
 			</div>
 	<!--//footer-->
 </body>
+<script>
+//	向下的动态箭头
+    function drawDown() {
+        var c = document.getElementById("downCanvas"),
+            cxt = c.getContext("2d");
+        cxt.beginPath();
+        cxt.moveTo(5, 20);
+        cxt.lineTo(25, 45);
+        cxt.lineTo(45, 20);
+        cxt.lineWidth = 5;
+        cxt.strokeStyle = "white";
+        cxt.lineCap = 'round';
+        cxt.lineJoin = "round";
+        cxt.stroke();
+        cxt.moveTo(5, 5);
+        cxt.lineTo(25, 30);
+        cxt.lineTo(45, 5);
+        cxt.lineWidth = 5;
+        cxt.strokeStyle = "white";
+        cxt.lineCap = 'round';
+        cxt.lineJoin = "round";
+        cxt.stroke();
+    }
+    drawDown();
+</script>
 </html>

@@ -976,9 +976,11 @@ p.reply a i{
 }
 .search{
 	position:relative;
+    top:0;
+    float:right;
 	border:none;
-	background:#000;
-	margin:1em 0 0;
+	background:#005238;
+    marigin:0 auto;
 }
 .search input[type="text"] {
 	outline: none;
