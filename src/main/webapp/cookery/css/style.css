@@ -1,6 +1,6 @@
 body{
 	background:#fff;	
-	font-family: 'Open Sans Condensed', sans-serif;
+	font-family: Helvetica;
 }
 body a{
 	transition: 0.5s all;
@@ -410,7 +410,7 @@ ul.grid-news li b {
 }
 .footer-left{
   padding-left: 50px;
-
+  margin-bottom: 20px
 }
 .footer-left ul li{
   display:inline-block;
@@ -436,6 +436,14 @@ ul.grid-news li b {
 }
 .footer-right{
   float:right;
+  padding-right: 50px;
+  margin-top:-50px;
+}
+
+.footer-right p{
+  font-size:14px;
+  color:#999;
+  line-height:1.8em;
 }
 .social-nav li{
   display:inline-block;
@@ -1018,6 +1026,16 @@ p.reply a i{
   vertical-align: middle;
   margin-right: 16px;
 }
+
+.popular li.active  a{
+  color:#005238;
+  font-size:1.2em; 
+}
+
+.popular li a:hover{
+  color:#97824b;
+}
+
 a.fashion {
   float: left;
   width: 34%;
@@ -1027,17 +1045,18 @@ a.fashion {
   width: 62%;
 }
 a.elit{
-	font-size: 1em;
+	font-size: 1.3em;
     color: #97824B;
     text-decoration: none;
     font-family: 'Raleway', sans-serif;
-    font-weight: 700;
+    font-weight: 800;
 }
 a.elit:hover{
 	color:#000;
 }
 .grid-product p{
-	font-size:1.15em;
+  padding-top: 10px
+	font-size:1em;
 	color:#777;
 	line-height:2em;
 }
@@ -1915,4 +1934,59 @@ span.label {
 td.add-check a {
     width: 86px;
 }
+}
+
+
+.tcdPageCode {
+  margin-top: 80px;
+  padding: 15px 5px;
+  text-align: left;
+  color: #ccc;
+  text-align: center;
+  font-family:Helvetica;
+  font-size: 1.15em;
+}
+.tcdPageCode a {
+  display: inline-block;
+  color: #005238;
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+  padding: 0 10px;
+  border: 1px solid #ddd;
+  margin: 0 2px;
+  border-radius: 4px;
+  vertical-align: middle;
+  font-size: 1.15em;
+}
+.tcdPageCode a:hover {
+  text-decoration: none;
+  border: 1px solid #005238;
+  padding: 0 10px;
+}
+.tcdPageCode span.current {
+  font-size: 12px;
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+  padding: 0 10px;
+  margin: 0 2px;
+  color: #fff;
+  background-color: #005238;
+  border: 1px solid #005238;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+.tcdPageCode span.disabled {
+  font-size: 12px;
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+  padding: 0 5px;
+  margin: 0 2px;
+  color: #bfbfbf;
+  background: #f2f2f2;
+  border: 1px solid #bfbfbf;
+  border-radius: 4px;
+  vertical-align: middle;
 }
