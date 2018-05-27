@@ -90,9 +90,9 @@ i.glyphicon.glyphicon-menu-hamburger {
   background:#005238;
   height: 300px;
   margin: 0px auto;
-  -moz-perspective: 1500;
-  -webkit-perspective: 1500;
-  perspective: 1500;
+  /*-moz-perspective: 1500;*/
+  /*-webkit-perspective: 1500;*/
+  /*perspective: 1500;*/
   position: relative;
   width:100%;
 }
@@ -482,7 +482,7 @@ ul.grid-news li b {
 
 .icon-border::after {
   z-index: 2;
-  background: url("../images/img-sp.png");
+  /*background: url("../images/img-sp.png");*/
 }
 
 /*-- //footer --*/
@@ -1055,7 +1055,7 @@ a.elit:hover{
 	color:#000;
 }
 .grid-product p{
-  padding-top: 10px
+  padding-top: 10px;
 	font-size:1em;
 	color:#777;
 	line-height:2em;
