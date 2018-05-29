@@ -27,6 +27,18 @@
     <!-- //animation-effect -->
     <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <link href="css/upload.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="js/createNote.js"></script>
+    <style>
+        .gray-button2 {
+            color: #fff;
+            background-color: #c5bfb6;
+            margin-top: 5px;
+            padding: 6px 15px;
+        }
+        .small-button {
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
 <div class="header head">
@@ -128,7 +140,8 @@
                             <div class="body" id="drop">
                                 <i class="fa fa-file-text-o pointer-none" aria-hidden="true"></i>
                                 <p class="pointer-none"><b>拖放到这里</b><br /><a href="" id="triggerFile">浏览</a>开始上传</p>
-                                <input type="file" multiple="multiple" />
+                                <!--<input type="file" multiple="multiple" />-->
+                                <input class="fileInput" type="file"  name="" >
                             </div>
                             <footer>
                                 <div class="divider">
@@ -150,91 +163,124 @@
                                 <h4>用料</h4>
                                 <br>
                                 <table class="table wow fadeInLeft animated" data-wow-delay=".5s" style="alignment: center;font-size:20px;width:70%;">
-                                    <tbody>
-                                    <tr>
+                                    <tbody id="componentBody">
+                                    <tr id="co1">
                                         <td>
                                             <input type="text" placeholder="食材：如鸡蛋" style="width:100%;outline:none">
                                         </td>
                                         <td>
                                             <input type="text" placeholder="用量：如一只" style="width:100%;outline:none">
+                                        </td>
+                                        <td>
+                                            <img src="images/close.png" draggable="false" onclick="deleteCo(1)">
                                         </td>
                                     </tr>
-                                    <tr >
+                                    <tr id="co2">
                                         <td>
                                             <input type="text" placeholder="食材：如鸡蛋" style="width:100%;outline:none">
                                         </td>
                                         <td>
                                             <input type="text" placeholder="用量：如一只" style="width:100%;outline:none">
+                                        </td>
+                                        <td>
+                                            <img src="images/close.png" draggable="false" onclick="deleteCo(2)">
                                         </td>
                                     </tr>
-                                    <tr >
+                                    <tr id="co3">
                                         <td>
                                             <input type="text" placeholder="食材：如鸡蛋" style="width:100%;outline:none">
                                         </td>
                                         <td>
                                             <input type="text" placeholder="用量：如一只" style="width:100%;outline:none">
+                                        </td>
+                                        <td>
+                                            <img src="images/close.png" draggable="false" onclick="deleteCo(3)">
                                         </td>
                                     </tr>
-                                    <tr >
+                                    <tr id="co4">
                                         <td>
                                             <input type="text" placeholder="食材：如鸡蛋" style="width:100%;outline:none">
                                         </td>
                                         <td>
                                             <input type="text" placeholder="用量：如一只" style="width:100%;outline:none">
+                                        </td>
+                                        <td>
+                                            <img src="images/close.png" draggable="false" onclick="deleteCo(4)">
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
+                                <div class="clearfix wow fadeInLeft animated" data-wow-delay=".5s">
+                                    <a class="button gray-button2 small-button" onclick="addComponent()">追加一行用料</a>
+                                </div>
+                                <br>
                                 <h4>做法</h4>
                                 <br>
                                 <table class="table wow fadeInLeft animated" data-wow-delay=".5s" style="font-size:20px;">
-                                    <tbody>
-                                    <tr>
+                                    <tbody id="stepBody">
+                                    <tr id="step1">
                                         <td><h4>1</h4></td>
                                         <td >
-                                            <textarea style="width: 450px;height:200px;outline:none" value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = '';}"></textarea>
+                                            <textarea style="width: 400px;height:200px;outline:none" value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = '';}"></textarea>
                                         </td>
                                         <td>
                                             <div class="imageFileInput">
                                                 <input class="fileInput" type="file"  name="">
                                             </div>
                                         </td>
+                                        <td>
+                                            <img src="images/closeB.png" style="padding-top: 60px" draggable="false" onclick="deleteStep(1)">
+                                        </td>
                                     </tr>
-                                    <tr >
+                                    <tr id="step2">
                                         <td><h4>2</h4></td>
                                         <td>
-                                            <textarea style="width: 450px;height:200px;outline:none" value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = '';}"></textarea>
+                                            <textarea style="width: 400px;height:200px;outline:none" value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = '';}"></textarea>
                                         </td>
                                         <td>
                                             <div class="imageFileInput">
                                                 <input class="fileInput" type="file"  name="">
                                             </div>
                                         </td>
+                                        <td>
+                                            <img src="images/closeB.png" style="padding-top: 60px" draggable="false" onclick="deleteStep(2)">
+                                        </td>
                                     </tr>
-                                    <tr >
+                                    <tr id="step3">
                                         <td><h4>3</h4></td>
                                         <td>
-                                            <textarea style="width: 450px;height:200px;outline:none" value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = '';}"></textarea>
+                                            <textarea style="width: 400px;height:200px;outline:none" value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = '';}"></textarea>
                                         </td>
                                         <td>
                                             <div class="imageFileInput">
                                                 <input class="fileInput" type="file"  name="">
                                             </div>
+                                        </td>
+                                        <td>
+                                            <img src="images/closeB.png" style="padding-top: 60px" draggable="false" onclick="deleteStep(3)">
                                         </td>
                                     </tr>
-                                    <tr >
+                                    <tr id="step4">
                                         <td><h4>4</h4></td>
                                         <td>
-                                            <textarea style="width: 450px;height:200px;outline:none" value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = '';}"></textarea>
+                                            <textarea style="width: 400px;height:200px;outline:none" value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = '';}"></textarea>
                                         </td>
                                         <td>
                                             <div class="imageFileInput">
-                                                <input class="fileInput" type="file"  name="">
+                                                <input class="fileInput" type="file"  name="" >
                                             </div>
+                                        </td>
+                                        <td>
+                                            <img src="images/closeB.png" style="padding-top: 60px" draggable="false" onclick="deleteStep(4)">
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
+                                <div class="clearfix wow fadeInLeft animated" data-wow-delay=".5s">
+                                    <a class="button gray-button2 small-button" onclick="addStep()">追加一行步骤</a>
+                                </div>
+                                <br>
+                                <br>
                             </div>
                         </div>
                         <div class="leave">
