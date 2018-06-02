@@ -11,7 +11,6 @@ target/
 
 ### IntelliJ IDEA ###
 .idea
-.out
 *.iws
 *.iml
 *.ipr
@@ -26,3 +25,5 @@ nbdist/
 
 api/*
 developers/developers.txt
+out/
+/out/
