@@ -15,6 +15,7 @@ public class UserInfo {
     private String address;
     private String phoneNumber;
     private String introduction;
+    private String icon;
 
     @Id
     @Column(name = "user_id")
@@ -74,6 +75,16 @@ public class UserInfo {
         this.introduction = introduction;
     }
 
+    @Basic
+    @Column(name="icon")
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -83,6 +94,7 @@ public class UserInfo {
                 ", address='" + address + '\'' +
                 ", phoneNumber=" + phoneNumber +
                 ", introduction='" + introduction + '\'' +
+                ", icon='" + icon + '\'' +
                 '}';
     }
 }

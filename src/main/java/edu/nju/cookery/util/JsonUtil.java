@@ -1,8 +1,9 @@
 package edu.nju.cookery.util;
 
 import org.json.JSONObject;
-
+import net.sf.json.JSONArray;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -32,5 +33,10 @@ public class JsonUtil {
             result.put(key,jsonObject.getString(key));
         }
         return result;
+    }
+
+    public static String toJson(List list){
+        JSONArray jsonArray = JSONArray.fromObject(list);
+        return jsonArray.toString();
     }
 }

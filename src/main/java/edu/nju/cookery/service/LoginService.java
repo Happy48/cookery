@@ -9,4 +9,5 @@ public interface LoginService {
      * @return 0 登陆成功 1 无此用户 2  密码有误
      */
     int login(String email,String pass);
+
 }
