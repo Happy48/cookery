@@ -73,12 +73,6 @@
             <version>1.2.31</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.json/json -->
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20180130</version>
-        </dependency>
 
         <dependency>
             <groupId>net.sf.json-lib</groupId>

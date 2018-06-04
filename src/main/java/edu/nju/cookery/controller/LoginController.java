@@ -35,14 +35,19 @@ public class LoginController {
             resultMap.put("code",3+"");
             return JsonUtil.toJson(resultMap);
         }
-        int code = loginService.login(email, pass);
-        resultMap.put("code",code+"");
-        if (code==0){
-            //TODO 生成token
+        int uid = loginService.login(email, pass);
+
+        if (uid==-1){
+            resultMap.put("code","-1");
+        }else if (uid==-2){
+            resultMap.put("code","-2");
+        }else{
+            resultMap.put("code","0");
             String token=createToken(email,pass);
-            stringRedisTemplate.opsForValue().set(email,token);
+            stringRedisTemplate.opsForValue().set(token,uid+"");
             resultMap.put("message",token);
         }
+
         return JsonUtil.toJson(resultMap);
     }
 

@@ -19,8 +19,8 @@ public class LoginServiceImplTest {
 
     @Test
     public void login() {
-        assertEquals(0,loginService.login("member1@163.com","123456"));
-        assertEquals(1,loginService.login("mem@163.com","123456"));
-        assertEquals(2,loginService.login("member1@163.com","123dsds456"));
+        assertEquals(1,loginService.login("member1@163.com","123456"));
+        assertEquals(-1,loginService.login("mem@163.com","123456"));
+        assertEquals(-2,loginService.login("member1@163.com","123dsds456"));
     }
 }

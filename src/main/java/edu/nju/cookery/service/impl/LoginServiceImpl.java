@@ -19,11 +19,11 @@ public class LoginServiceImpl implements LoginService {
 
         Login user = loginRepository.findByEmail(email);
         if (user==null){
-            return 1;
+            return -1;
         }else if (user.getPassword().equals(MD5Util.encode(pass))){
-            return 0;
+            return user.getUserID();
         }else{
-            return 2;
+            return -2;
         }
     }
 

@@ -1,7 +1,7 @@
 package edu.nju.cookery.util;
 
-import org.json.JSONObject;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +23,7 @@ public class JsonUtil {
     }
 
     public static Map<String,String> fromString(String string){
-        JSONObject jsonObject=new JSONObject(string);
+        JSONObject jsonObject=JSONObject.fromObject(string);
 
         Set<String> set=jsonObject.keySet();
 
