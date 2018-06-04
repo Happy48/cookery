@@ -2,10 +2,13 @@ package edu.nju.cookery.controller;
 
 import edu.nju.cookery.service.LoginService;
 import edu.nju.cookery.util.JsonUtil;
+import edu.nju.cookery.util.MD5Util;
 import edu.nju.cookery.util.ParamCheckUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 
 @RestController
@@ -14,6 +17,8 @@ public class LoginController {
 
     @Autowired
     private LoginService loginService;
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
     /**
      * 登陆方法
@@ -34,9 +39,20 @@ public class LoginController {
         resultMap.put("code",code+"");
         if (code==0){
             //TODO 生成token
-            String token="";
+            String token=createToken(email,pass);
+            stringRedisTemplate.opsForValue().set(email,token);
             resultMap.put("message",token);
         }
         return JsonUtil.toJson(resultMap);
+    }
+
+    /**
+     * token 生成
+     * @param email
+     * @param pass
+     * @return
+     */
+    private String createToken(String email,String pass){
+        return MD5Util.encode(email+pass+new Date().getTime());
     }
 }
