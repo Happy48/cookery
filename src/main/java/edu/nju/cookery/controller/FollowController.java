@@ -15,7 +15,7 @@ public class FollowController {
     @Autowired
     private FollowService followService;
 
-    @RequestMapping(value = "/api/myAttention",method = RequestMethod.GET)
+    @RequestMapping(value = "/api/myattention",method = RequestMethod.GET)
     @CrossOrigin
     public String getMyAttention(@RequestParam("token") String token){
         int userID = Integer.parseInt(token);//token转换id不晓得？？？？
