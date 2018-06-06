@@ -10,5 +10,10 @@ public interface LoginService {
      */
     int login(String email,String pass);
 
-
+    /**
+     * 根据用户名查找用户id
+     * @param userName
+     * @return
+     */
+    int getUserIDByName(String userName);
 }

@@ -15,4 +15,11 @@ public interface NoteRepository extends JpaRepository<Note,Integer> {
      * @return
      */
     List<Note> findByUserID(int userID);
+
+    /**
+     * 查找笔记
+     * @param noteID 笔记Id
+     * @return
+     */
+    Note findByNoteID(int noteID);
 }

@@ -27,4 +27,10 @@ public class LoginServiceImpl implements LoginService {
         }
     }
 
+    @Override
+    public int getUserIDByName(String userName) {
+        Login user = loginRepository.findByUsername(userName);
+        return user.getUserID();
+    }
+
 }

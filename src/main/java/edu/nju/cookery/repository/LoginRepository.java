@@ -20,4 +20,12 @@ public interface LoginRepository  extends JpaRepository<Login,Integer> {
      * @return
      */
     Login findByUserID(int userID);
+
+    /**
+     * 根据用户名查找用户
+     * @param userName 用户名
+     * @return
+     */
+    Login findByUsername(String userName);
+
 }

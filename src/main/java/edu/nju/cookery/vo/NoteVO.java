@@ -9,17 +9,17 @@ public class NoteVO {
     private String foodDesc;
     private int foodLikes;
     private Timestamp foodCreateTime;
-    private String foodShare;
-    private String foodUrl;
+    private int foodCollect;
+    private int noteId;
 
-    public NoteVO(String foodTitle, String foodPic, String foodDesc, int foodLikes, Timestamp foodCreateTime, String foodShare, String foodUrl) {
+    public NoteVO(String foodTitle, String foodPic, String foodDesc, int foodLikes, Timestamp foodCreateTime, int foodCollect, int noteId) {
         this.foodTitle = foodTitle;
         this.foodPic = foodPic;
         this.foodDesc = foodDesc;
         this.foodLikes = foodLikes;
         this.foodCreateTime = foodCreateTime;
-        this.foodShare = foodShare;
-        this.foodUrl = foodUrl;
+        this.foodCollect = foodCollect;
+        this.noteId = noteId;
     }
 
     public String getFoodTitle() {
@@ -62,20 +62,20 @@ public class NoteVO {
         this.foodCreateTime = foodCreateTime;
     }
 
-    public String getFoodShare() {
-        return foodShare;
+    public int getFoodCollect() {
+        return foodCollect;
     }
 
-    public void setFoodShare(String foodShare) {
-        this.foodShare = foodShare;
+    public void setFoodCollect(int foodCollect) {
+        this.foodCollect = foodCollect;
     }
 
-    public String getFoodUrl() {
-        return foodUrl;
+    public int getNoteId() {
+        return noteId;
     }
 
-    public void setFoodUrl(String foodUrl) {
-        this.foodUrl = foodUrl;
+    public void setNoteId(int noteId) {
+        this.noteId = noteId;
     }
 }
 
