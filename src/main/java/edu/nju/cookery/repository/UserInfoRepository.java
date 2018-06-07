@@ -13,4 +13,5 @@ public interface UserInfoRepository   extends JpaRepository<UserInfo,Integer> {
      * @return
      */
     UserInfo findByUserID(int userID);
+
 }

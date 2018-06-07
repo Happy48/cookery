@@ -77,6 +77,7 @@ public class NoteVO {
     public void setNoteId(int noteId) {
         this.noteId = noteId;
     }
+
 }
 
 

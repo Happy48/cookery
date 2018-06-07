@@ -13,6 +13,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 获得用户个人信息
+     * @param name
+     * @return
+     */
     @RequestMapping(value = "/api/information",method = RequestMethod.GET)
     @CrossOrigin
     public String getUserInfo(@RequestParam("name") String name){
