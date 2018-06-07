@@ -1,8 +1,10 @@
 package edu.nju.cookery.service.impl;
 
 import edu.nju.cookery.entity.Collect;
+import edu.nju.cookery.entity.Like;
 import edu.nju.cookery.entity.Note;
 import edu.nju.cookery.repository.CollectRepository;
+import edu.nju.cookery.repository.LikeRepository;
 import edu.nju.cookery.repository.NoteRepository;
 import edu.nju.cookery.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ public class NoteServiceImpl implements NoteService {
     private NoteRepository noteRepository;
     @Autowired
     private CollectRepository collectRepository;
+    @Autowired
+    private LikeRepository likeRepository;
 
     @Override
     public List<Note> getBlogListByUserID(int userID) {
@@ -36,5 +40,16 @@ public class NoteServiceImpl implements NoteService {
             noteList.add(noteRepository.findByNoteID(noteId));
         }
         return noteList;
+    }
+
+    @Override
+    public List<Note> getTopPopularNote(int num) {
+        List<Integer> likes = likeRepository.findPopularLike();
+        List<Note> recommend = new ArrayList<>();
+
+        for(int i=0;i<num;i++){
+            recommend.add(noteRepository.findByNoteID(likes.get(i)));
+        }
+        return recommend;
     }
 }

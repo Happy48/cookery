@@ -20,4 +20,10 @@ public interface NoteService {
      */
     List<Note> getCollectedBlog(int userID);
 
+    /**
+     * 获得喜欢人数最多的若干篇笔记
+     * @param num 笔记数量
+     * @return
+     */
+    List<Note> getTopPopularNote(int num);
 }

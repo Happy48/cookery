@@ -71,4 +71,25 @@ public class NoteController {
         }
         return JsonUtil.toJson(noteVOList);
     }
+
+    /**
+     * 获取推荐的笔记列表
+     * @param number
+     * @return
+     */
+    @RequestMapping(value = "/api/guessLike",method = RequestMethod.GET)
+    @CrossOrigin
+    public String getCollectNoteListByUserID(@RequestParam("number") int number){
+        List<NoteVO> noteVOList = new ArrayList<>();
+        List<Note> noteList = noteService.getTopPopularNote(number);
+        for(Note note: noteList){
+            int noteID = note.getNoteID();
+            int likeCnt = likeService.getLikeCount(noteID);
+            int collectCnt = collectService.getCollectCount(noteID);
+            NoteVO noteVO = new NoteVO(note.getNoteName(), note.getNoteCover(), note.getDescription(),
+                    likeCnt, note.getCreatedTime(), collectCnt, noteID);
+            noteVOList.add(noteVO);
+        }
+        return JsonUtil.toJson(noteVOList);
+    }
 }
