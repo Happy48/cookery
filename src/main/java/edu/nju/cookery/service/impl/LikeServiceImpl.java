@@ -16,7 +16,7 @@ public class LikeServiceImpl implements LikeService {
 
     @Override
     public int getLikeCount(int noteID) {
-        List<Like> likeList = likeRepository.findByNoteID(noteID);
+        List<Like> likeList = likeRepository.findThroughNoteID(noteID);
         return likeList.size();
     }
 }

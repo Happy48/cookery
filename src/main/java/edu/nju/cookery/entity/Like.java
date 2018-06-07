@@ -7,6 +7,7 @@ import javax.persistence.*;
  * 笔记喜欢信息（喜欢id，笔记id，用户id）
  */
 @Entity
+@Table(name="love")
 public class Like {
     private int likeID;
     private int noteID;

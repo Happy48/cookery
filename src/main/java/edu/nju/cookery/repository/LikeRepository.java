@@ -15,7 +15,8 @@ public interface LikeRepository  extends JpaRepository<Like,Integer> {
      * @param noteID 笔记id
      * @return
      */
-    List<Like> findByNoteID(int noteID);
+    @Query("select l from Like l where l.noteID=?1")
+    List<Like> findThroughNoteID(int noteID);
 
     /**
      * 找到用户的所有喜欢
