@@ -23,7 +23,7 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public List<NoteVO> search(String key, int pageIndex) {
-        Pageable pageable = new PageRequest(pageIndex+1, 5);
+        Pageable pageable = new PageRequest(pageIndex, 5);
 
         Page<Note> notes = noteRepository.findByNoteNameLike( "%"+key+"%" , pageable);
         List<NoteVO> searchResult=new ArrayList<>(notes.getSize());
