@@ -15,7 +15,7 @@ public class SearchController {
     private SearchService searchService;
 
     @CrossOrigin
-    @RequestMapping(value = "/search")
+    @RequestMapping(value = "/api/search")
     public String search(@RequestParam(name = "key") String key,@RequestParam(name = "page",required = false,defaultValue = "0")String page){
         int pageIndex=Integer.parseInt(page);
 

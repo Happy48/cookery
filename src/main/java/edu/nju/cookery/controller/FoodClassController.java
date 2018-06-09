@@ -20,7 +20,7 @@ public class FoodClassController {
      * 获取全部笔记分类信息
      * @return
      */
-    @RequestMapping(value = "/getList")
+    @RequestMapping(value = "/api/getList")
     public String getList(){
         return JsonUtil.toJson(foodClassService.getFoodClass());
     }
