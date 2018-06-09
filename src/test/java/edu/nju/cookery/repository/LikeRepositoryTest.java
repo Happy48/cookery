@@ -1,5 +1,6 @@
 package edu.nju.cookery.repository;
 
+import edu.nju.cookery.entity.Like;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,15 @@ public class LikeRepositoryTest {
     public void findByUserID() {
         assertEquals(8, likeRepository.findByUserID(1).size());
         assertEquals(8, likeRepository.findByUserID(2).size());
+    }
+
+    @Test
+    public void addLike(){
+        Like like=new Like();
+        like.setNoteID(1);
+        like.setUserID(5);
+        likeRepository.saveAndFlush(like);
+        likeRepository.delete(like);
     }
 
     @Test

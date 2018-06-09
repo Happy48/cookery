@@ -67,4 +67,34 @@ public class NoteController {
         HashMap<String, String> result = noteService.getIndexRecommend();
         return JsonUtil.toJson(result);
     }
+
+    /**
+     * 某人收藏/取消收藏笔记
+     * @param userid
+     * @param noteid
+     * @return 添加收藏成功，code为0；已有该收藏，code为1
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/api/collect",method = RequestMethod.GET)
+    public String collectNote(@RequestParam("userid") int userid, @RequestParam(name = "noteid") int noteid){
+        HashMap<String,String> resultMap=new HashMap<>();
+        int code=noteService.addCollect(userid,noteid);
+        resultMap.put("code",code+"");
+        return JsonUtil.toJson(resultMap);
+    }
+
+    /**
+     * 某人喜欢/取消喜欢笔记
+     * @param userid
+     * @param noteid
+     * @return 对笔记添加喜欢成功，code为0；该笔记已有喜欢，调用此方法则取消喜欢，code为1
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/api/like",method = RequestMethod.GET)
+    public String likeNote(@RequestParam("userid") int userid, @RequestParam(name = "noteid") int noteid){
+        HashMap<String,String> resultMap=new HashMap<>();
+        int code=noteService.addLike(userid,noteid);
+        resultMap.put("code",code+"");
+        return JsonUtil.toJson(resultMap);
+    }
 }

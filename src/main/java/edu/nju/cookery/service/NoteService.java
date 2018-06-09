@@ -38,4 +38,20 @@ public interface NoteService {
     List<NoteVO> getNoteListByUserIdAndPage(int userID, int page);
 
     HashMap<String,String> getIndexRecommend();
+
+    /**
+     * 笔记收藏/取消收藏
+     * @param userid
+     * @param noteid
+     * @return 收藏成功，返回0; 已经收藏过则取消收藏，返回1
+     */
+    int addCollect(int userid,int noteid);
+
+    /**
+     * 笔记喜欢/取消喜欢
+     * @param userid
+     * @param noteid
+     * @return 喜欢成功，返回0; 已经喜欢则取消喜欢，返回1
+     */
+    int addLike(int userid,int noteid);
 }

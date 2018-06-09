@@ -1,6 +1,7 @@
 package edu.nju.cookery.service.impl;
 
 import edu.nju.cookery.entity.Collect;
+import edu.nju.cookery.entity.Like;
 import edu.nju.cookery.entity.Note;
 import edu.nju.cookery.repository.CollectRepository;
 import edu.nju.cookery.repository.LikeRepository;
@@ -103,6 +104,51 @@ public class NoteServiceImpl implements NoteService {
         result.put("hot",JsonUtil.toJson(getTopPopularNote(3)));
         return result;
     }
+
+    /**
+     * 某人收藏笔记/取消收藏笔记
+     * @param userid
+     * @param noteid
+     * @return
+     */
+    @Override
+    public int addCollect(int userid, int noteid) {
+        List<Collect>collectList=collectRepository.findByUserID(userid);
+        for (Collect collect:collectList) {
+            if (collect.getNoteID() == noteid) {
+                collectRepository.delete(collect);
+                return 1;  // 已经收藏过
+            }
+        }
+        Collect collect=new Collect();
+        collect.setNoteID(noteid);
+        collect.setUserID(userid);
+        collectRepository.save(collect);
+        return 0;
+    }
+
+    /**
+     * 某人喜欢笔记/取消喜欢笔记
+     * @param userid
+     * @param noteid
+     * @return
+     */
+    @Override
+    public int addLike(int userid, int noteid) {
+        List<Like>likeList=likeRepository.findByUserID(userid);
+        for (Like like:likeList) {
+            if (like.getNoteID() == noteid) {
+                likeRepository.delete(like);
+                return 1;  // 已经喜欢过
+            }
+        }
+        Like like=new Like();
+        like.setNoteID(noteid);
+        like.setUserID(userid);
+        likeRepository.save(like);
+        return 0;
+    }
+
 
     /**
      * 获取当前的月份

@@ -19,4 +19,5 @@ public class CollectServiceImpl implements CollectService {
         List<Collect> collectList = collectRepository.findByNoteID(noteID);
         return collectList.size();
     }
+
 }

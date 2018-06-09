@@ -50,4 +50,16 @@ public class NoteServiceImplTest {
         assertNotNull(indexRecommend.get("recommend"));
         assertNotNull(indexRecommend.get("hot"));
     }
+
+    @Test
+    public void addCollect() {
+        assertEquals(0,noteService.addCollect(3,13));
+        assertEquals(1,noteService.addCollect(3,13));
+    }
+
+    @Test
+    public void addLike() {
+        assertEquals(0,noteService.addCollect(3,13));
+        assertEquals(1,noteService.addCollect(3,13));
+    }
 }

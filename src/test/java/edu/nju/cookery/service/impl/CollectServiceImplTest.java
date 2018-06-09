@@ -22,4 +22,5 @@ public class CollectServiceImplTest {
         assertEquals(4,collectService.getCollectCount(45));
         assertEquals(3,collectService.getCollectCount(69));
     }
+
 }

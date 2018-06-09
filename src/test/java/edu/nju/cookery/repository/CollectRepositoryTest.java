@@ -1,5 +1,6 @@
 package edu.nju.cookery.repository;
 
+import edu.nju.cookery.entity.Collect;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +27,14 @@ public class CollectRepositoryTest {
         assertEquals(8,collectRepository.findByUserID(1).size());
         assertEquals(4,collectRepository.findByUserID(2).size());
     }
+
+    @Test
+    public void testAddCollect(){
+        Collect collect=new Collect();
+        collect.setNoteID(14);
+        collect.setUserID(1);
+        collectRepository.saveAndFlush(collect);
+        collectRepository.delete(collect);
+    }
+
 }
