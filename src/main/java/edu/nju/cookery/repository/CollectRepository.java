@@ -1,7 +1,9 @@
 package edu.nju.cookery.repository;
 
 import edu.nju.cookery.entity.Collect;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,4 +25,10 @@ public interface CollectRepository  extends JpaRepository<Collect,Integer> {
      */
     List<Collect> findByUserID(int userID);
 
+    /**
+     * 按照收藏人数降序排序笔记
+     * @return
+     */
+    @Query("select c.noteID from Collect c group by c.noteID order by count(c.userID) desc")
+    List<Integer> findPopularLike(Pageable pageable);
 }

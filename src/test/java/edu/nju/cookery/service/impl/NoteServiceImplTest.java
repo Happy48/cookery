@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -38,5 +40,14 @@ public class NoteServiceImplTest {
     public void getNoteListByUserIdAndPage() {
         assertEquals(11, noteService.getNoteListByUserIdAndPage(2,0).get(1).getNoteId());
         assertEquals(37, noteService.getNoteListByUserIdAndPage(5,1).get(3).getNoteId());
+    }
+
+    @Test
+    public void getIndexRecommend() {
+
+        Map<String, String> indexRecommend = noteService.getIndexRecommend();
+        assertNotNull(indexRecommend.get("month"));
+        assertNotNull(indexRecommend.get("recommend"));
+        assertNotNull(indexRecommend.get("hot"));
     }
 }

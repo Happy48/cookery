@@ -1,8 +1,8 @@
 package edu.nju.cookery.service;
 
-import edu.nju.cookery.entity.Note;
 import edu.nju.cookery.vo.NoteVO;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface NoteService {
@@ -36,4 +36,6 @@ public interface NoteService {
      * @return
      */
     List<NoteVO> getNoteListByUserIdAndPage(int userID, int page);
+
+    HashMap<String,String> getIndexRecommend();
 }

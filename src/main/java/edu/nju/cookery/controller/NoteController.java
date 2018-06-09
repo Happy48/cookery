@@ -6,7 +6,9 @@ import edu.nju.cookery.vo.NoteVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -53,5 +55,16 @@ public class NoteController {
     public String getRecommendNote(@RequestParam("number") int number){
         List<NoteVO> noteVOList =noteService.getTopPopularNote(number);
         return JsonUtil.toJson(noteVOList);
+    }
+
+    /**
+     * 获取首页推荐
+     * @return
+     */
+    @RequestMapping(value ="/api/indexRecommend")
+    @CrossOrigin
+    public String getIndexRecommend(){
+        HashMap<String, String> result = noteService.getIndexRecommend();
+        return JsonUtil.toJson(result);
     }
 }
