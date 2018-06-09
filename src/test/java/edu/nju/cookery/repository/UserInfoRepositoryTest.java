@@ -1,6 +1,7 @@
 package edu.nju.cookery.repository;
 
 import edu.nju.cookery.entity.UserInfo;
+import edu.nju.cookery.util.DateHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,9 @@ public class UserInfoRepositoryTest {
     public void changeInfo(){
         UserInfo userInfo=new UserInfo();
         userInfo.setAddress("内蒙古");
+
         String strDate="1987-05-30";
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        ParsePosition pos = new ParsePosition(0);
-        Date strtodate = formatter.parse(strDate,pos);
+        Date strtodate = DateHelper.strToUtilDate(strDate);
         userInfo.setBirthday(strtodate);
         userInfo.setIntroduction("你若安好便是晴天!");
         userInfo.setPhoneNumber("13819231229");

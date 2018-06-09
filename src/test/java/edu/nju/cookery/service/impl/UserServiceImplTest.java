@@ -2,11 +2,17 @@ package edu.nju.cookery.service.impl;
 
 import edu.nju.cookery.Application;
 import edu.nju.cookery.service.UserService;
+import edu.nju.cookery.util.DateHelper;
+import edu.nju.cookery.vo.UserExceptIconVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -21,5 +27,14 @@ public class UserServiceImplTest {
     public void getUserInfo() {
         assertEquals("食，乐也～", userService.getUserInfo(4).getIntroduction());
         assertEquals("下厨房等多家美食平台美食达人.如需合作，请至新浪微博发私信联系", userService.getUserInfo(11).getIntroduction());
+    }
+
+    @Test
+    public void changeUserInfo(){
+        String strDate="1987-05-30";
+        Date strtodate = DateHelper.strToUtilDate(strDate);
+        UserExceptIconVO vo=new UserExceptIconVO(13,"唯幂nomie的厨房","内蒙古",false,
+                strtodate,"你若安好便是晴天","13819231229","123456","member13@163.com");
+        assertEquals(0, userService.changeInfo(vo));
     }
 }

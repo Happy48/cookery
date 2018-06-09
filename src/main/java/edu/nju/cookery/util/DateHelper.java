@@ -2,6 +2,8 @@ package edu.nju.cookery.util;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -111,6 +113,13 @@ public class DateHelper {
         i -= 1000;
         date = new Date(i);
         return date.toString() + " 23:59:59";
+    }
+
+    public static java.util.Date strToUtilDate(String strDate){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        ParsePosition pos = new ParsePosition(0);
+        java.util.Date date = formatter.parse(strDate,pos);
+        return date;
     }
 
 }
