@@ -19,8 +19,8 @@ public class NoteServiceImplTest {
 
     @Test
     public void getBlogListByUserID() {
-        assertEquals(1, noteService.getBlogListByUserID(1).get(0).getNoteID());
-        assertEquals(10, noteService.getBlogListByUserID(2).get(0).getNoteID());
+        assertEquals(1, noteService.getBlogListByUserID(1).get(0).getNoteId());
+        assertEquals(10, noteService.getBlogListByUserID(2).get(0).getNoteId());
     }
 
     @Test
@@ -31,7 +31,7 @@ public class NoteServiceImplTest {
 
     @Test
     public void getTopPopularNote() {
-        assertEquals(38, noteService.getTopPopularNote(4).get(0).getNoteID());
+        assertEquals(38, noteService.getTopPopularNote(4).get(0).getNoteId());
     }
 
     @Test

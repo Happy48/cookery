@@ -31,31 +31,34 @@ public class NoteServiceImpl implements NoteService {
     private LikeRepository likeRepository;
 
     @Override
-    public List<Note> getBlogListByUserID(int userID) {
+    public List<NoteVO> getBlogListByUserID(int userID) {
 
         List<Note> noteList = noteRepository.findByUserID(userID);
-
-        return noteList;
+        List<NoteVO> noteVOList =new ArrayList<>(noteList.size());
+        for (Note note:noteList){
+            noteVOList.add(noteVOHelper.getNoteVO(note));
+        }
+        return noteVOList;
     }
 
     @Override
-    public List<Note> getCollectedBlog(int userID) {
-        List<Note> noteList = new ArrayList<>();
+    public List<NoteVO> getCollectedBlog(int userID) {
+        List<NoteVO> noteList = new ArrayList<>();
         List<Collect> collectList = collectRepository.findByUserID(userID);
         for(Collect collect: collectList){
             int noteId = collect.getNoteID();
-            noteList.add(noteRepository.findByNoteID(noteId));
+            noteList.add(noteVOHelper.getNoteVO(noteRepository.findByNoteID(noteId)));
         }
         return noteList;
     }
 
     @Override
-    public List<Note> getTopPopularNote(int num) {
+    public List<NoteVO> getTopPopularNote(int num) {
         List<Integer> likes = likeRepository.findPopularLike();
-        List<Note> recommend = new ArrayList<>();
+        List<NoteVO> recommend = new ArrayList<>();
 
         for(int i=0;i<num;i++){
-            recommend.add(noteRepository.findByNoteID(likes.get(i)));
+            recommend.add(noteVOHelper.getNoteVO(noteRepository.findByNoteID(likes.get(i))));
         }
         return recommend;
     }
