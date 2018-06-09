@@ -51,6 +51,17 @@ public class LoginController {
         return JsonUtil.toJson(resultMap);
     }
 
+
+    @RequestMapping(value = "/api/register",method = RequestMethod.POST)
+    public String register(@RequestParam("name")String name,
+                           @RequestParam("pass")String pass,
+                           @RequestParam("email")String email){
+        HashMap<String,String> resultMap=new HashMap<>();
+        int code=loginService.register(name,pass,email);
+        resultMap.put("code",code+"");
+        return JsonUtil.toJson(resultMap);
+    }
+
     /**
      * token 生成
      * @param email

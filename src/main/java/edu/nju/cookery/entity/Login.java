@@ -12,10 +12,10 @@ public class Login {
     private String username;
     private String password;
     private String email;
-    private String token;
-    private int tokenExptime;
-    private boolean activated;
-    private int regTime;
+    private String token="";
+    private int tokenExptime=0;
+    private boolean activated=true;
+    private int regTime=0;
 
     @Id
     @Column(name = "user_id")

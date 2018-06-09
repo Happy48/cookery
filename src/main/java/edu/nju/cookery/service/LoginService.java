@@ -16,4 +16,13 @@ public interface LoginService {
      * @return
      */
     int getUserIDByName(String userName);
+
+    /**
+     * 注册
+     * @param name 用户名
+     * @param pass 密码
+     * @param email 邮箱
+     * @return
+     */
+    int register(String name, String pass, String email);
 }

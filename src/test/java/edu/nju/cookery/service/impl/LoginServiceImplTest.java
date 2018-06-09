@@ -23,4 +23,12 @@ public class LoginServiceImplTest {
         assertEquals(-1,loginService.login("mem@163.com","123456"));
         assertEquals(-2,loginService.login("member1@163.com","123dsds456"));
     }
+
+    @Test
+    public void register(){
+        assertEquals(1,loginService.register("民神大厨", "123", "123456@qq.com"));
+        assertEquals(2,loginService.register("member9@163.com","123","member9@163.com"));
+        //assertEquals(0,loginService.register("member9@163.com","123","member99@163.com"));
+
+    }
 }

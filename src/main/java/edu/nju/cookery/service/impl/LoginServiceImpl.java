@@ -33,4 +33,22 @@ public class LoginServiceImpl implements LoginService {
         return user.getUserID();
     }
 
+    @Override
+    public int register(String name, String pass, String email) {
+        Login nameUser=loginRepository.findByUsername(name);
+        if (nameUser!=null){
+            return 1;
+        }
+        Login emailUser=loginRepository.findByEmail(email);
+        if (emailUser!=null){
+            return 2;
+        }
+        Login login=new Login();
+        login.setEmail(email);
+        login.setPassword(MD5Util.encode(pass));
+        login.setUsername(name);
+        loginRepository.save(login);
+        return 0;
+    }
+
 }
