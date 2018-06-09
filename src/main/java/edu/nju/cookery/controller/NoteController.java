@@ -28,17 +28,17 @@ public class NoteController {
 
     /**
      * 获取某人的笔记列表
-     * @param name
+     * @param userid
      * @param page
      * @return
      */
-    @RequestMapping(value = "/api/blog",method = RequestMethod.GET)
+    @RequestMapping(value = "/api/userNoteList",method = RequestMethod.GET)
     @CrossOrigin
-    public String getNoteListByUserID(@RequestParam("name") String name,
+    public String getNoteListByUserID(@RequestParam("userid") int userid,
                         @RequestParam("page") int page){
         List<NoteVO> noteVOList = new ArrayList<>();
-        int userID = loginService.getUserIDByName(name);
-        List<Note> noteList = noteService.getBlogListByUserID(userID);
+        //int userID = loginService.getUserIDByName(name);
+        List<Note> noteList = noteService.getBlogListByUserID(userid);
         for(Note note: noteList){
             int noteID = note.getNoteID();
             int likeCnt = likeService.getLikeCount(noteID);
@@ -52,15 +52,14 @@ public class NoteController {
 
     /**
      * 获取某人收藏的笔记列表
-     * @param token
+     * @param userid
      * @return
      */
-    @RequestMapping(value = "/api/collection",method = RequestMethod.GET)
+    @RequestMapping(value = "/api/userCollection",method = RequestMethod.GET)
     @CrossOrigin
-    public String getCollectNoteListByUserID(@RequestParam("token") String token){
+    public String getCollectNoteListByUserID(@RequestParam("userid") int userid){
         List<NoteVO> noteVOList = new ArrayList<>();
-        int userID = 0;
-        List<Note> noteList = noteService.getCollectedBlog(userID);
+        List<Note> noteList = noteService.getCollectedBlog(userid);
         for(Note note: noteList){
             int noteID = note.getNoteID();
             int likeCnt = likeService.getLikeCount(noteID);
@@ -79,7 +78,7 @@ public class NoteController {
      */
     @RequestMapping(value = "/api/guessLike",method = RequestMethod.GET)
     @CrossOrigin
-    public String getCollectNoteListByUserID(@RequestParam("number") int number){
+    public String getRecommendNote(@RequestParam("number") int number){
         List<NoteVO> noteVOList = new ArrayList<>();
         List<Note> noteList = noteService.getTopPopularNote(number);
         for(Note note: noteList){

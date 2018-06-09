@@ -15,11 +15,10 @@ public class FollowController {
     @Autowired
     private FollowService followService;
 
-    @RequestMapping(value = "/api/myattention",method = RequestMethod.GET)
+    @RequestMapping(value = "/api/myFollowList",method = RequestMethod.GET)
     @CrossOrigin
-    public String getMyAttention(@RequestParam("token") String token){
-        int userID = Integer.parseInt(token);//token转换id不晓得？？？？
-        List<FollowVO> followVOList = followService.getMyAttention(userID);
+    public String getMyAttention(@RequestParam("userid") int userid){
+        List<FollowVO> followVOList = followService.getMyAttention(userid);
 
         return JsonUtil.toJson(followVOList);
     }

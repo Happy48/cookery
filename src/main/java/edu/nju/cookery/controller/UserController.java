@@ -15,14 +15,13 @@ public class UserController {
 
     /**
      * 获得用户个人信息
-     * @param name
+     * @param userid
      * @return
      */
-    @RequestMapping(value = "/api/information",method = RequestMethod.GET)
+    @RequestMapping(value = "/api/userInfo",method = RequestMethod.GET)
     @CrossOrigin
-    public String getUserInfo(@RequestParam("name") String name){
-        int userID = 0;//为什么不给id？？
-        UserVO userVO = userService.getUserInfo(userID);
+    public String getUserInfo(@RequestParam("userid") int userid){
+        UserVO userVO = userService.getUserInfo(userid);
         return JSONObject.fromObject(userVO).toString();//????
     }
 }
