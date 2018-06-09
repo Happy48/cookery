@@ -7,35 +7,35 @@ import javax.persistence.*;
  */
 @Entity
 public class Subtag {
-    private int subtagID;
-    private String subtagName;
+    private int id;
+    private String name;
 
     @Id
     @Column(name = "subtag_id")
     @GeneratedValue(strategy= GenerationType.AUTO)
-    public int getSubtagID() {
-        return subtagID;
+    public int getId() {
+        return id;
     }
 
-    public void setSubtagID(int subtagID) {
-        this.subtagID = subtagID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
     @Column(name="subtag_name")
-    public String getSubtagName() {
-        return subtagName;
+    public String getName() {
+        return name;
     }
 
-    public void setSubtagName(String subtagName) {
-        this.subtagName = subtagName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
         return "Subtag{" +
-                "subtagID=" + subtagID +
-                ", subtagName='" + subtagName + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 '}';
     }
 }
