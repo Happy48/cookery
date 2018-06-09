@@ -3,7 +3,7 @@
 | api  | method  | 说明  | 返回格式  |
 |---|---|---|---|
 |  /api/login | post  | 用户登陆 post参数{"name":"xxx","pass":"xxx"}  | {"code":0,"message":""} 0表示用户成功登陆,message中返回token,code 1 用户不存在 code 2密码有误 3表示输入为空 |
-|  /api/register |  post | 用户注册 post 参数{"name":"xxx","pass":"xxx","email":"xxx"}  | {"code":0,"message":""} 0表示注册成功 1 表示用户名已存在 2 邮箱已存在  |
+|  /api/register |  post | 用户注册 post 参数{"name":"xxx","pass":"xxx","email":"xxx"}  | {"code":0} 0表示注册成功 1 表示用户名已存在 2 邮箱已存在  |
 |  /api/indexRecommend | get  | 获取首页推荐  | {"month":"六月","recommend":[{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx"}...]},"hot":["foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodShare"分享的作品:"xxx","foodUrl":"xxx"}...]}|
 |  /api/search?key=xxx[&page=1] | get  |  根据关键词进行搜索食品 | [{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodShare"分享的作品:"xxx","foodUrl":"xxx"}]  |
 |  /api/getList | get  | 获取食品分类目录  | [{"id":"1","name":"家常菜"}...]  |
