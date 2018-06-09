@@ -7,7 +7,11 @@ import edu.nju.cookery.repository.CollectRepository;
 import edu.nju.cookery.repository.LikeRepository;
 import edu.nju.cookery.repository.NoteRepository;
 import edu.nju.cookery.service.NoteService;
+import edu.nju.cookery.vo.NoteVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -15,6 +19,9 @@ import java.util.List;
 
 @Component
 public class NoteServiceImpl implements NoteService {
+
+    @Autowired
+    NoteVOHelper noteVOHelper;
 
     @Autowired
     private NoteRepository noteRepository;
@@ -51,5 +58,17 @@ public class NoteServiceImpl implements NoteService {
             recommend.add(noteRepository.findByNoteID(likes.get(i)));
         }
         return recommend;
+    }
+
+    @Override
+    public List<NoteVO> getNoteListByUserIdAndPage(int userID, int page) {
+        Pageable pageable = new PageRequest(page, 5);
+
+        Page<Note> notes = noteRepository.findByUserID( userID , pageable);
+        List<NoteVO> noteVOList =new ArrayList<>(notes.getSize());
+        for (Note note:notes.getContent()){
+            noteVOList.add(noteVOHelper.getNoteVO(note));
+        }
+        return noteVOList;
     }
 }

@@ -33,4 +33,10 @@ public class NoteServiceImplTest {
     public void getTopPopularNote() {
         assertEquals(38, noteService.getTopPopularNote(4).get(0).getNoteID());
     }
+
+    @Test
+    public void getNoteListByUserIdAndPage() {
+        assertEquals(11, noteService.getNoteListByUserIdAndPage(2,0).get(1).getNoteId());
+        assertEquals(37, noteService.getNoteListByUserIdAndPage(5,1).get(3).getNoteId());
+    }
 }

@@ -33,4 +33,12 @@ public interface NoteRepository extends JpaRepository<Note,Integer> {
      */
     Page<Note> findByNoteNameLike(String key, Pageable pageable);
 
+    /**
+     * 按照页数获取笔记
+     * @param userID
+     * @param pageable
+     * @return
+     */
+    Page<Note> findByUserID(int userID, Pageable pageable);
+
 }

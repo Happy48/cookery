@@ -3,7 +3,6 @@ package edu.nju.cookery.controller;
 import edu.nju.cookery.entity.Note;
 import edu.nju.cookery.service.CollectService;
 import edu.nju.cookery.service.LikeService;
-import edu.nju.cookery.service.LoginService;
 import edu.nju.cookery.service.NoteService;
 import edu.nju.cookery.util.JsonUtil;
 import edu.nju.cookery.vo.NoteVO;
@@ -18,8 +17,6 @@ import java.util.List;
 public class NoteController {
 
     @Autowired
-    private LoginService loginService;
-    @Autowired
     private NoteService noteService;
     @Autowired
     private CollectService collectService;
@@ -27,7 +24,7 @@ public class NoteController {
     private LikeService likeService;
 
     /**
-     * 获取某人的笔记列表
+     * 按照页数获取某人的笔记列表
      * @param userid
      * @param page
      * @return
@@ -35,18 +32,9 @@ public class NoteController {
     @RequestMapping(value = "/api/userNoteList",method = RequestMethod.GET)
     @CrossOrigin
     public String getNoteListByUserID(@RequestParam("userid") int userid,
-                        @RequestParam("page") int page){
-        List<NoteVO> noteVOList = new ArrayList<>();
-        //int userID = loginService.getUserIDByName(name);
-        List<Note> noteList = noteService.getBlogListByUserID(userid);
-        for(Note note: noteList){
-            int noteID = note.getNoteID();
-            int likeCnt = likeService.getLikeCount(noteID);
-            int collectCnt = collectService.getCollectCount(noteID);
-            NoteVO noteVO = new NoteVO(note.getNoteName(), note.getNoteCover(), note.getDescription(),
-                    likeCnt, note.getCreatedTime(), collectCnt, noteID);
-            noteVOList.add(noteVO);
-        }
+                        @RequestParam(name = "page",required = false,defaultValue = "0")String page){
+        int pageIndex=Integer.parseInt(page);
+        List<NoteVO> noteVOList = noteService.getNoteListByUserIdAndPage(userid, pageIndex);
         return JsonUtil.toJson(noteVOList);
     }
 
