@@ -14,7 +14,7 @@
 |  /api/userCollection?token=xxx | get  | 获取我的收藏列表  | [{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodCollect":2,"noteId":12}...]  |
 | /api/searchFromPeople?name=xxx&key=xxx[&page=1]  | get  | 从某人的博客里面搜索  |  [{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodCollect":2,"noteId":12}...] |
 | /api/getNoteList?class=1  | get  | 根据分类寻找具体的事物  |  [{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodCollect":2,"noteId":12}...] |
-|  /api/foodDetail?url='' | get  | 根据foodURL获取food的详情  | {"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodShareUrls":[{"name":"xxx","picurl"分享的:"xxx","time":"xxx","content":"xxx"}...],"foodUrl":"xxx","materials":[{"name":"xxx","quantity":"xxx"}...],"steps":[{"desc":"xxx","picurl":"xxx"}...] ,"comment":[{"name":"xxx","picurl用户头像":"xxx","time":"xxx","content":"xxx"}]|
+|  /api/getNoteDetail?noteId=xxx | get  | 根据noteId获取food的详情  | {"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","workVOList":[{"userId":12,"picture":"xxx","desc":"xxx"}...],"noteId":12,"materialVOList":[{"name":"xxx","quantity":"xxx"}...],"stepVOList":[{"desc":"xxx","picUrl":"xxx"}...] ,"commentVOList":[{"userId":1,"time":"xxx","content":"xxx"}]|
 |  /api/leaveReply?token=xxx&noteId=xxx&content=xxx | post  | 留下评论  | {"code":1} 0表示成功 1表示失败  |
 |  /api/collect?token=xxx&foodUrl=xxx | get  | 收藏  | {"code":1} 0表示成功 1表示失败  |
 |/api/like?token=xxx&foodUrl=xxx | get  | 喜欢  | {"code":1} 0表示成功 1表示失败  |
