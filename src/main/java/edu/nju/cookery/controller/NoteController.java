@@ -1,7 +1,9 @@
 package edu.nju.cookery.controller;
 
+import edu.nju.cookery.service.LoginService;
 import edu.nju.cookery.service.NoteService;
 import edu.nju.cookery.util.JsonUtil;
+import edu.nju.cookery.util.TokenUtil;
 import edu.nju.cookery.vo.NoteVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,33 +18,46 @@ public class NoteController {
 
     @Autowired
     private NoteService noteService;
+    @Autowired
+    private TokenUtil tokenUtil;
+    @Autowired
+    private LoginService loginService;
 
     /**
      * 按照页数获取某人的笔记列表
-     * @param userid
+     * @param name
      * @param page
      * @return
      */
     @RequestMapping(value = "/api/userNoteList",method = RequestMethod.GET)
     @CrossOrigin
-    public String getNoteListByUserID(@RequestParam("userid") int userid,
+    public String getNoteListByUserID(@RequestParam("name") String name,
                         @RequestParam(name = "page",required = false,defaultValue = "0")String page){
         int pageIndex=Integer.parseInt(page);
-        List<NoteVO> noteVOList = noteService.getNoteListByUserIdAndPage(userid, pageIndex);
-        return JsonUtil.toJson(noteVOList);
+        int userid = loginService.getUserIDByName(name);
+        if(userid != -1){
+            List<NoteVO> noteVOList = noteService.getNoteListByUserIdAndPage(userid, pageIndex);
+            return JsonUtil.toJson(noteVOList);
+        }
+        return null;
     }
 
     /**
      * 获取某人收藏的笔记列表
-     * @param userid
+     * @param token
      * @return
      */
     @RequestMapping(value = "/api/userCollection",method = RequestMethod.GET)
     @CrossOrigin
-    public String getCollectNoteListByUserID(@RequestParam("userid") int userid){
-        List<NoteVO> noteVOList=noteService.getCollectedBlog(userid);
+    public String getCollectNoteListByUserID(@RequestParam("token") String token){
+        int userid = tokenUtil.getUid(token);
 
-        return JsonUtil.toJson(noteVOList);
+        if(userid != -1){
+            List<NoteVO> noteVOList=noteService.getCollectedBlog(userid);
+
+            return JsonUtil.toJson(noteVOList);
+        }
+        return null;
     }
 
     /**

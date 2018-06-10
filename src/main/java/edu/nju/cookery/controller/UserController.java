@@ -1,5 +1,6 @@
 package edu.nju.cookery.controller;
 
+import edu.nju.cookery.service.LoginService;
 import edu.nju.cookery.service.UserService;
 import edu.nju.cookery.util.JsonUtil;
 import edu.nju.cookery.vo.UserExceptIconVO;
@@ -16,17 +17,23 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private LoginService loginService;
 
     /**
      * 获得用户个人信息
-     * @param userid
+     * @param name
      * @return
      */
     @RequestMapping(value = "/api/userInfo",method = RequestMethod.GET)
     @CrossOrigin
-    public String getUserInfo(@RequestParam("userid") int userid){
-        UserVO userVO = userService.getUserInfo(userid);
-        return JSONObject.fromObject(userVO).toString();//????
+    public String getUserInfo(@RequestParam("name") String name){
+        int userid = loginService.getUserIDByName(name);
+        if(userid != -1){
+            UserVO userVO = userService.getUserInfo(userid);
+            return JSONObject.fromObject(userVO).toString();//????
+        }
+        return null;
     }
 
     /**
