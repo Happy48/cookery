@@ -31,7 +31,7 @@ public class UserController {
         int userid = loginService.getUserIDByName(name);
         if(userid != -1){
             UserVO userVO = userService.getUserInfo(userid);
-            return JSONObject.fromObject(userVO).toString();//????
+            return JSONObject.fromObject(userVO).toString();//???
         }
         return null;
     }

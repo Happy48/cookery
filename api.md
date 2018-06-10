@@ -9,7 +9,7 @@
 |  /api/getList | get  | 获取食品分类目录  | [{"id":"1","name":"家常菜"}...]  |
 |  /api/guessLike | get  | 获取你可能喜欢的菜品  |  [{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodCollect":1,"noteId":12}...] |
 |  /api/myFollowList?token=xxx | get  |  获取关注的人的列表 | [{"name":"xxx","icon":"xxx"}...]  |
-|  /api/userInfo?name=xxx |  get | 获取某位成员的信息  | [{"userId":12,"userName":"xxx","sex":0,"introduction":"xxx","icon":"xxx"}]    |
+|  /api/userInfo?name=xxx |  get |  获取某位成员的信息  | [{"userId":12,"userName":"xxx","sex":0,"introduction":"xxx","icon":"xxx"}]    |
 |  /api/userNoteList?name=xxx[&page=1] | get  | 获取某人的笔记列表  |  [{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodCollect":"1,"noteId":12}...] |
 |  /api/userCollection?token=xxx | get  | 获取我的收藏列表  | [{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodCollect":2,"noteId":12}...]  |
 | /api/searchfromPeople?name=xxx&key=xxx[&page=1]  | get  | 从某人的博客里面搜索  |  [{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodShare"分享的作品:"xxx","foodUrl":"xxx"}...] |

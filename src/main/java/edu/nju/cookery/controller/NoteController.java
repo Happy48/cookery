@@ -54,7 +54,6 @@ public class NoteController {
 
         if(userid != -1){
             List<NoteVO> noteVOList=noteService.getCollectedBlog(userid);
-
             return JsonUtil.toJson(noteVOList);
         }
         return null;

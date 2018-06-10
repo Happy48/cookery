@@ -29,7 +29,6 @@ public class FollowController {
         int userid = tokenUtil.getUid(token);
         if(userid!=-1){
             List<FollowVO> followVOList = followService.getMyAttention(userid);
-
             return JsonUtil.toJson(followVOList);
         }
         return null;
