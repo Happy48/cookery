@@ -174,7 +174,7 @@ public class NoteServiceImpl implements NoteService {
         int newNoteId=savedObject.getNoteID();
         System.out.println(newNoteId);
         // 添加标签
-        ArrayList<String> subTagList=newNoteVO.getSubTagList();
+        List<String> subTagList=newNoteVO.getSubTagList();
         for(String tagStr:subTagList){
             if(subtagRepository.findByName(tagStr)==null){
                 return 1;

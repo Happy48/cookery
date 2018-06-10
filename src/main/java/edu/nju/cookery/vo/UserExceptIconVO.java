@@ -24,6 +24,7 @@ public class UserExceptIconVO {
         this.phoneNumber=phoneNumber;
         this.userPwd=userPwd;
         this.email=email;
+        this.birthday=birthday;
     }
 
     public int getUserID() {

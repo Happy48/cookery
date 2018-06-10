@@ -10,9 +10,8 @@ import edu.nju.cookery.vo.NoteVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.util.*;
 
 @RestController
 @CrossOrigin
@@ -88,40 +87,78 @@ public class NoteController {
 
     /**
      * 某人收藏/取消收藏笔记
-     * @param userid
+     * @param token
      * @param noteid
-     * @return 添加收藏成功，code为0；已有该收藏，code为1
+     * @return 添加收藏成功，code为0；已有该收藏，code为1；没有该用户，code为2
      */
     @CrossOrigin
     @RequestMapping(value = "/api/collect",method = RequestMethod.GET)
-    public String collectNote(@RequestParam("userid") int userid, @RequestParam(name = "noteid") int noteid){
+    public String collectNote(@RequestParam("token") String token, @RequestParam(name = "noteid") int noteid){
         HashMap<String,String> resultMap=new HashMap<>();
-        int code=noteService.addCollect(userid,noteid);
-        resultMap.put("code",code+"");
+        int userid= tokenUtil.getUid(token);
+        if(userid!=-1){
+            int code=noteService.addCollect(userid,noteid);
+            resultMap.put("code",code+"");
+        }
+        else{
+            resultMap.put("code","2");
+        }
         return JsonUtil.toJson(resultMap);
     }
 
     /**
      * 某人喜欢/取消喜欢笔记
-     * @param userid
+     * @param token
      * @param noteid
-     * @return 对笔记添加喜欢成功，code为0；该笔记已有喜欢，调用此方法则取消喜欢，code为1
+     * @return 对笔记添加喜欢成功，code为0；该笔记已有喜欢，调用此方法则取消喜欢，code为1；没有该用户，code为2
      */
     @CrossOrigin
     @RequestMapping(value = "/api/like",method = RequestMethod.GET)
-    public String likeNote(@RequestParam("userid") int userid, @RequestParam(name = "noteid") int noteid){
+    public String likeNote(@RequestParam("token") String token, @RequestParam(name = "noteid") int noteid){
         HashMap<String,String> resultMap=new HashMap<>();
-        int code=noteService.addLike(userid,noteid);
-        resultMap.put("code",code+"");
+        int userid= tokenUtil.getUid(token);
+        if(userid!=-1){
+            int code=noteService.addLike(userid,noteid);
+            resultMap.put("code",code+"");
+        }
+        else{
+            resultMap.put("code","2");
+        }
         return JsonUtil.toJson(resultMap);
     }
 
+    /**
+     * 添加笔记
+     * @param token
+     * @param noteName
+     * @param noteCover
+     * @param description
+     * @param material
+     * @param practice
+     * @param tip
+     * @param subtag
+     * @return 添加笔记成功，code为0；子标签不在定义范围之内，code为1；没有该用户，code为2
+     */
     @CrossOrigin
     @RequestMapping(value = "/api/createNote",method = RequestMethod.POST)
-    public String createNote(@RequestParam("newNote")NewNoteVO newNoteVO){
+    public String createNote(@RequestParam("token") String token,@RequestParam("noteName") String noteName,
+                             @RequestParam("noteCover") String noteCover,@RequestParam("description") String description,
+                             @RequestParam("material") String material,@RequestParam("practice") String practice,
+                             @RequestParam("tip") String tip,@RequestParam("subtag") String subtag){
+
         HashMap<String,String> resultMap=new HashMap<>();
-        int code=noteService.createNote(newNoteVO);
-        resultMap.put("code",code+"");
+        int userid= tokenUtil.getUid(token);
+        if(userid != -1){
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            String[]subtagArr=subtag.split(",");
+            List<String>subtagList= Arrays.asList(subtagArr);
+            NewNoteVO newNoteVO=new NewNoteVO(userid,noteName,noteCover,description,material,practice,timestamp,tip,subtagList);
+            int code=noteService.createNote(newNoteVO);
+            resultMap.put("code",code+"");
+        }
+        else{
+            resultMap.put("code","2");
+        }
         return JsonUtil.toJson(resultMap);
     }
 

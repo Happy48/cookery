@@ -1,7 +1,7 @@
 package edu.nju.cookery.vo;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
+import java.util.List;
 
 public class NewNoteVO {
 
@@ -13,10 +13,10 @@ public class NewNoteVO {
     private String practice;
     private Timestamp createdTime;
     private String tip;
-    private ArrayList<String> subTagList;
+    private List<String> subTagList;
 
     public NewNoteVO(int userID,String noteName,String noteCover,String description,String material,String practice,
-                     Timestamp createdTime,String tip,ArrayList<String>subTagList){
+                     Timestamp createdTime,String tip,List<String>subTagList){
         this.userID=userID;
         this.noteName=noteName;
         this.noteCover=noteCover;
@@ -28,11 +28,11 @@ public class NewNoteVO {
         this.subTagList=subTagList;
     }
 
-    public ArrayList<String> getSubTagList() {
+    public List<String> getSubTagList() {
         return subTagList;
     }
 
-    public void setSubTagList(ArrayList<String> subTagList) {
+    public void setSubTagList(List<String> subTagList) {
         this.subTagList = subTagList;
     }
 
