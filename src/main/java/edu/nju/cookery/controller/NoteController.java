@@ -4,6 +4,7 @@ import edu.nju.cookery.service.LoginService;
 import edu.nju.cookery.service.NoteService;
 import edu.nju.cookery.util.JsonUtil;
 import edu.nju.cookery.util.TokenUtil;
+import edu.nju.cookery.vo.NewNoteVO;
 import edu.nju.cookery.vo.NoteVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -108,6 +109,15 @@ public class NoteController {
     public String likeNote(@RequestParam("userid") int userid, @RequestParam(name = "noteid") int noteid){
         HashMap<String,String> resultMap=new HashMap<>();
         int code=noteService.addLike(userid,noteid);
+        resultMap.put("code",code+"");
+        return JsonUtil.toJson(resultMap);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/api/createNote",method = RequestMethod.POST)
+    public String createNote(@RequestParam("newNote")NewNoteVO newNoteVO){
+        HashMap<String,String> resultMap=new HashMap<>();
+        int code=noteService.createNote(newNoteVO);
         resultMap.put("code",code+"");
         return JsonUtil.toJson(resultMap);
     }

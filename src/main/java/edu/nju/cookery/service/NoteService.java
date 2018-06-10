@@ -1,5 +1,6 @@
 package edu.nju.cookery.service;
 
+import edu.nju.cookery.vo.NewNoteVO;
 import edu.nju.cookery.vo.NoteVO;
 
 import java.util.HashMap;
@@ -54,4 +55,11 @@ public interface NoteService {
      * @return 喜欢成功，返回0; 已经喜欢则取消喜欢，返回1
      */
     int addLike(int userid,int noteid);
+
+    /**
+     * 新增笔记
+     * @param newnoteVO
+     * @return 新增成功，返回0；新增失败，返回1
+     */
+    int createNote(NewNoteVO newnoteVO);
 }

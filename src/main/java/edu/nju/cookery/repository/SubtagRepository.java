@@ -10,4 +10,11 @@ import java.util.List;
 public interface SubtagRepository  extends JpaRepository<Subtag,Integer> {
     @Override
     List<Subtag> findAll();
+
+    /**
+     * 根据标签名查找
+     * @param name 标签名
+     * @return
+     */
+    Subtag findByName(String name);
 }

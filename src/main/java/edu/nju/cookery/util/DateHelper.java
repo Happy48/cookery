@@ -115,6 +115,9 @@ public class DateHelper {
         return date.toString() + " 23:59:59";
     }
 
+    /**
+     * 将年月入字符串转为Date
+     */
     public static java.util.Date strToUtilDate(String strDate){
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         ParsePosition pos = new ParsePosition(0);

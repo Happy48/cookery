@@ -3,11 +3,11 @@ package edu.nju.cookery.service.impl;
 import edu.nju.cookery.entity.Collect;
 import edu.nju.cookery.entity.Like;
 import edu.nju.cookery.entity.Note;
-import edu.nju.cookery.repository.CollectRepository;
-import edu.nju.cookery.repository.LikeRepository;
-import edu.nju.cookery.repository.NoteRepository;
+import edu.nju.cookery.entity.Category;
+import edu.nju.cookery.repository.*;
 import edu.nju.cookery.service.NoteService;
 import edu.nju.cookery.util.JsonUtil;
+import edu.nju.cookery.vo.NewNoteVO;
 import edu.nju.cookery.vo.NoteVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,6 +32,10 @@ public class NoteServiceImpl implements NoteService {
     private CollectRepository collectRepository;
     @Autowired
     private LikeRepository likeRepository;
+    @Autowired
+    private SubtagRepository subtagRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
 
     private final String[] mouths=new String[]{
@@ -146,6 +150,41 @@ public class NoteServiceImpl implements NoteService {
         like.setNoteID(noteid);
         like.setUserID(userid);
         likeRepository.save(like);
+        return 0;
+    }
+
+
+    /**
+     * 新增笔记
+     * @param newNoteVO
+     * @return
+     */
+    public int createNote(NewNoteVO newNoteVO){
+        // 添加笔记
+        Note note=new Note();
+        note.setCreatedTime(newNoteVO.getCreatedTime());
+        note.setDescription(newNoteVO.getDescription());
+        note.setMaterial(newNoteVO.getMaterial());
+        note.setNoteCover(newNoteVO.getNoteCover());
+        note.setNoteName(newNoteVO.getNoteName());
+        note.setPractice(newNoteVO.getPractice());
+        note.setTip(newNoteVO.getTip());
+        note.setUserID(newNoteVO.getUserID());
+        Note savedObject=noteRepository.saveAndFlush(note);
+        int newNoteId=savedObject.getNoteID();
+        System.out.println(newNoteId);
+        // 添加标签
+        ArrayList<String> subTagList=newNoteVO.getSubTagList();
+        for(String tagStr:subTagList){
+            if(subtagRepository.findByName(tagStr)==null){
+                return 1;
+            }
+            int tagId=subtagRepository.findByName(tagStr).getId();
+            Category category=new Category();
+            category.setNoteID(newNoteId);
+            category.setSubtagID(tagId);
+            categoryRepository.saveAndFlush(category);
+        }
         return 0;
     }
 
