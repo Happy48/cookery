@@ -2,10 +2,8 @@ package edu.nju.cookery.util;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
+import java.util.*;
 
 /**
  * 简单键值对生成Json字符串工具
@@ -39,4 +37,5 @@ public class JsonUtil {
         JSONArray jsonArray = JSONArray.fromObject(list);
         return jsonArray.toString();
     }
+
 }

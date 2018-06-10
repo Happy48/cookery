@@ -2,12 +2,22 @@ package edu.nju.cookery.vo;
 
 public class StepVO {
 
+    private int id;
     private String desc;
     private String picUrl;
 
-    public StepVO(String desc, String picUrl) {
+    public StepVO(int id, String desc, String picUrl) {
+        this.id = id;
         this.desc = desc;
         this.picUrl = picUrl;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDesc() {
@@ -29,7 +39,8 @@ public class StepVO {
     @Override
     public String toString() {
         return "StepVO{" +
-                "desc='" + desc + '\'' +
+                "id=" + id +
+                ", desc='" + desc + '\'' +
                 ", picUrl='" + picUrl + '\'' +
                 '}';
     }
