@@ -24,4 +24,10 @@ public class SearchServiceImplTest {
         List<NoteVO> search = searchService.search("奶", 0);
         assertTrue(search.size()!=0);
     }
+
+    @Test
+    public void searchFromPeopleTest(){
+        List<NoteVO> search = searchService.searchFromPeople(10, "饮", 0);
+        assertTrue(search.size()!=0);
+    }
 }

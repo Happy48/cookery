@@ -32,4 +32,16 @@ public class SearchServiceImpl implements SearchService {
         }
         return searchResult;
     }
+
+    @Override
+    public List<NoteVO> searchFromPeople(int userId, String key, int pageIndex) {
+        Pageable pageable = new PageRequest(pageIndex, 5);
+
+        Page<Note> notes = noteRepository.findByUserIDAndNoteNameLike( userId, "%"+key+"%" , pageable);
+        List<NoteVO> searchResult=new ArrayList<>(notes.getSize());
+        for (Note note:notes.getContent()){
+            searchResult.add(noteVOHelper.getNoteVO(note));
+        }
+        return searchResult;
+    }
 }

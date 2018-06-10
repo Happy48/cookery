@@ -56,4 +56,10 @@ public class NoteRepositoryTest {
         note.setNoteID(id);
         noteRepository.delete(note);
     }
+
+    @Test
+    public void findByUserIDAndNoteNameLike() {
+        Pageable pageable = new PageRequest(0, 2);
+        assertEquals(63, noteRepository.findByUserIDAndNoteNameLike(10,"饮", pageable).getContent().get(0).getNoteID());
+    }
 }
