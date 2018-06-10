@@ -25,6 +25,9 @@ public class CategoryRepositoryTest {
         categoryRepository.delete(category);
     }
 
-
+    @Test
+    public void findBySubtagID(){
+        assertEquals(7, categoryRepository.findBySubtagID(5).size());
+    }
 
 }

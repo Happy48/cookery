@@ -12,10 +12,10 @@
 |  /api/userInfo?name=xxx |  get |  获取某位成员的信息  | [{"userId":12,"userName":"xxx","sex":0,"introduction":"xxx","icon":"xxx"}]    |
 |  /api/userNoteList?name=xxx[&page=1] | get  | 获取某人的笔记列表  |  [{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodCollect":"1,"noteId":12}...] |
 |  /api/userCollection?token=xxx | get  | 获取我的收藏列表  | [{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodCollect":2,"noteId":12}...]  |
-| /api/searchfromPeople?name=xxx&key=xxx[&page=1]  | get  | 从某人的博客里面搜索  |  [{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodShare"分享的作品:"xxx","foodUrl":"xxx"}...] |
-| /api/foodList?class=1  | get  | 根据分类寻找具体的事物  |  [{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodShare"分享的作品:"xxx","foodUrl":"xxx"}...] |
+| /api/searchFromPeople?name=xxx&key=xxx[&page=1]  | get  | 从某人的博客里面搜索  |  [{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodCollect":2,"noteId":12}...] |
+| /api/getNoteList?class=1  | get  | 根据分类寻找具体的事物  |  [{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodCollect":2,"noteId":12}...] |
 |  /api/foodDetail?url='' | get  | 根据foodURL获取food的详情  | {"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodShareUrls":[{"name":"xxx","picurl"分享的:"xxx","time":"xxx","content":"xxx"}...],"foodUrl":"xxx","materials":[{"name":"xxx","quantity":"xxx"}...],"steps":[{"desc":"xxx","picurl":"xxx"}...] ,"comment":[{"name":"xxx","picurl用户头像":"xxx","time":"xxx","content":"xxx"}]|
-|  /api/leaveReply?token=xxx&foodUrl=xxx&content=xxx | get  | 留下评论  | {"code":1} 0表示成功 1表示失败  |
+|  /api/leaveReply?token=xxx&noteId=xxx&content=xxx | post  | 留下评论  | {"code":1} 0表示成功 1表示失败  |
 |  /api/collect?token=xxx&foodUrl=xxx | get  | 收藏  | {"code":1} 0表示成功 1表示失败  |
 |/api/like?token=xxx&foodUrl=xxx | get  | 喜欢  | {"code":1} 0表示成功 1表示失败  |
 |/api/createBlog | post  | 创建 post参数……大致和上面一样……图片还不会等等  | {"code":1} 0表示成功 1表示失败  |

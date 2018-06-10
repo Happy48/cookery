@@ -1,0 +1,15 @@
+package edu.nju.cookery.service;
+
+import edu.nju.cookery.vo.NoteVO;
+
+import java.util.List;
+
+public interface CategoryService {
+
+    /**
+     * 根据标签名找笔记
+     * @param clazz
+     * @return
+     */
+    List<NoteVO> getNoteByClazz(String clazz);
+}

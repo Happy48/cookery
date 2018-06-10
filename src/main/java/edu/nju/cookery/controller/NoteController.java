@@ -1,5 +1,6 @@
 package edu.nju.cookery.controller;
 
+import edu.nju.cookery.service.CategoryService;
 import edu.nju.cookery.service.LoginService;
 import edu.nju.cookery.service.NoteService;
 import edu.nju.cookery.util.JsonUtil;
@@ -23,6 +24,8 @@ public class NoteController {
     private TokenUtil tokenUtil;
     @Autowired
     private LoginService loginService;
+    @Autowired
+    private CategoryService categoryService;
 
     /**
      * 按照页数获取某人的笔记列表
@@ -120,5 +123,17 @@ public class NoteController {
         int code=noteService.createNote(newNoteVO);
         resultMap.put("code",code+"");
         return JsonUtil.toJson(resultMap);
+    }
+
+    /**
+     * 根据分类寻找笔记
+     * @param className
+     * @return
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/api/getNoteList",method = RequestMethod.GET)
+    public String getNoteList(@RequestParam("class")String className){
+        List<NoteVO> noteVOList  = categoryService.getNoteByClazz(className);
+        return JsonUtil.toJson(noteVOList);
     }
 }
