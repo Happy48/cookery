@@ -52,7 +52,7 @@ public class UserController {
      * @param phoneNumber
      * @param userPwd
      * @param email
-     * @return 修改成功，code为0；没有该用户，修改失败，code为1
+     * @return 0表示成功 1表示修改的用户名已存在 2表示修改的邮箱已存在 3表示用户不存在
      */
     @RequestMapping(value="/api/changeInfo",method=RequestMethod.POST)
     @CrossOrigin
@@ -71,7 +71,7 @@ public class UserController {
             return JsonUtil.toJson(resultMap);
         }
         else{
-            resultMap.put("code","1");
+            resultMap.put("code","3");
             return JsonUtil.toJson(resultMap);
         }
     }

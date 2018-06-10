@@ -36,5 +36,18 @@ public class UserServiceImplTest {
         UserExceptIconVO vo=new UserExceptIconVO(13,"唯幂nomie的厨房","内蒙古",false,
                 strtodate,"你若安好便是晴天","13819231229","123456","member13@163.com");
         assertEquals(0, userService.changeInfo(vo));
+
+        String strDate1="1987-05-30";
+        Date strtodate1 = DateHelper.strToUtilDate(strDate1);
+        UserExceptIconVO vo1=new UserExceptIconVO(13,"梅子厨艺","内蒙古",false,
+                strtodate1,"你若安好便是晴天","13819231229","123456","member13@163.com");
+        assertEquals(1, userService.changeInfo(vo1));
+
+        String strDate2="1987-05-30";
+        Date strtodate2 = DateHelper.strToUtilDate(strDate2);
+        UserExceptIconVO vo2=new UserExceptIconVO(13,"唯幂nomie的厨房","内蒙古",false,
+                strtodate2,"你若安好便是晴天","13819231229","123456","member7@163.com");
+        assertEquals(2, userService.changeInfo(vo2));
+
     }
 }

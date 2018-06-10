@@ -16,9 +16,9 @@
 | /api/getNoteList?class=1  | get  | 根据分类寻找具体的事物  |  [{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodCollect":2,"noteId":12}...] |
 |  /api/getNoteDetail?noteId=xxx | get  | 根据noteId获取food的详情  | {"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","workVOList":[{"userId":12,"picture":"xxx","desc":"xxx"}...],"noteId":12,"materialVOList":[{"name":"xxx","quantity":"xxx"}...],"stepVOList":[{"desc":"xxx","picUrl":"xxx"}...] ,"commentVOList":[{"userId":1,"time":"xxx","content":"xxx"}]|
 |  /api/leaveReply?token=xxx&noteId=xxx&content=xxx | post  | 留下评论  | {"code":1} 0表示成功 1表示失败  |
-|  /api/collect?token=xxx&foodUrl=xxx | get  | 收藏  | {"code":1} 0表示成功 1表示失败  |
-|/api/like?token=xxx&foodUrl=xxx | get  | 喜欢  | {"code":1} 0表示成功 1表示失败  |
-|/api/createBlog | post  | 创建 post参数……大致和上面一样……图片还不会等等  | {"code":1} 0表示成功 1表示失败  |
-|/api/changeInfo | post  | 修改个人信息 name,location,sex,brithday,email  | {"code":1} 0表示成功 1表示失败  |
+|  /api/collect?token=xxx&noteid=xxx | get  | 收藏  | {"code":1} 0表示成功 1已有该收藏，取消收藏 2表示用户不存在  |
+|/api/like?token=xxx&noteid=xxx | get  | 喜欢  | {"code":1} 0表示成功 1已有该喜欢，取消喜欢 2表示用户不存在  |
+|/api/createNote | post  | 添加新笔记 token，noteName,noteCover,description,material,practice,tip,subtag(如"家常菜，下饭菜"，逗号隔开分类)  | {"code":1} 0表示成功 1表示子标签不在subtag范围之内 2表示用户不存在  |
+|/api/changeInfo | post  | 修改个人信息 token,userName,address,sex,birthday,introduction,phoneNumber,userPwd,email  | {"code":1} 0表示成功 1表示修改的用户名已存在 2表示修改的邮箱已存在 3表示用户不存在  |
 | /api/changeUserPic?token=xxx | post | 修改个人头像| {"code":1} 0表示成功 1表示失败  |
 

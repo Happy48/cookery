@@ -8,6 +8,7 @@ import edu.nju.cookery.service.UserService;
 import edu.nju.cookery.util.MD5Util;
 import edu.nju.cookery.vo.UserExceptIconVO;
 import edu.nju.cookery.vo.UserVO;
+import org.hibernate.validator.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -36,7 +37,21 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     public int changeInfo(UserExceptIconVO userExceptIconVO){
+
         int userid=userExceptIconVO.getUserID();
+
+        // 检查是否已有该用户名
+        Login name_check=loginRepository.findByUsername(userExceptIconVO.getUserName());
+        if(name_check!=null&&name_check.getUserID()!=userid){
+            return 1;
+        }
+
+        // 检查是否已有该邮箱
+        Login email_check=loginRepository.findByEmail(userExceptIconVO.getEmail());
+        if(email_check!=null&&email_check.getUserID()!=userid){
+            return 2;
+        }
+
         String icon=userInfoRepository.findByUserID(userid).getIcon();
         UserInfo userInfo=new UserInfo();
 
