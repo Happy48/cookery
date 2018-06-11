@@ -3,6 +3,7 @@
 <head>
 <title>Events</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/navi_login.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
 <!-- Custom Theme files -->
@@ -26,14 +27,48 @@
  new WOW().init();
 </script>
 <!-- //animation-effect -->
-
+	<style>
+		#personal_icon{
+			border-radius: 50%;
+			width:40px;
+			height:40px;
+		}
+	</style>
 </head>
 <body>
 <div class="header head">
-	<div class="container">
+	<div class="container navi">
+
 		<div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
-			<h2 style="font-family: Helvetica;margin-top: 15px;margin-left: 15px"><a href="index.html"><img src="images/oo.png" alt="">大厨笔记</a></h2>
+			<h2 style="font-family: Helvetica"><a href="index.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/oo.png" alt="">大厨笔记</a></h2>
 		</div>
+
+		<div class="col-md-3" id="search">
+			<form>
+				<input type="text" placeholder="搜索笔记/食材" required="" >
+				<input type="submit" value="" >
+			</form>
+		</div>
+
+		<div id="menu_div">
+			<ul>
+				<li><a  href="index_login.html">首页</a></li>
+				<li><a  href="allblogs_login.html">笔记广场</a></li>
+				<li><a  href="focus.html">我的关注</a></li>
+				<li><a  href="collect.html">我的收藏</a></li>
+				<li><a  href="mybloglist.html">我的笔记</a></li>
+				<li><a  href="createNote.html">写笔记</a></li>
+			</ul>
+		</div>
+
+		<div id="login_part">
+			<ul>
+				<li><a  href="personalInfo.html"><img id="personal_icon" src="http://img.mukewang.com/58492fe600012e8e01800180-200-200.jpg"></a></li>
+				<li><a  href="index.html">登出</a></li>
+			</ul>
+		</div>
+
+
 	</div>
 	<!-- start search-->	
 		
@@ -193,19 +228,24 @@
 </div>
 
 <div class="footer">
-				<div class="footer-left">
-					<ul>
-						<li><a href="#">隐私声明</a>|</li>
-						<li><a href="#">意见反馈</a>|</li>
-						<li><a href="mail.html">联系我们</a></li>
-					</ul>
-					<p>Copyright &copy; 2018. 美食生活情趣   厨房笔记 <a href="" target="_blank" title="模板之家">大厨笔记</a> </p>
-				</div>
-				<div class="footer-right">
-					<p>(*^__^*) 唯有美食与爱不可辜负</p>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
+	<div class="footer-left">
+		<ul>
+			<li><a href="#">大厨笔记</a>|</li>
+			<li><a href="#">联系我们</a></li>
+		</ul>
+		<p>Copyright &copy; dachubiji.com  京B2-20170599   京ICP备13009072号-1   京公网安备11010802022308号 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家"></a></p>
+	</div>
+	<div class="footer-right">
+		<ul class="social-nav model-3">
+			<li><a href="#" class="icon icon-border facebook"></a></li>
+			<li><a href="#" class="icon icon-border twitter"></a></li>
+			<li><a href="#" class="icon icon-border googleplus"></a></li>
+			<li><a href="#" class="icon icon-border github"></a></li>
+			<li><a href="#" class="icon icon-border rss"></a></li>
+		</ul>
+	</div>
+	<div class="clearfix"> </div>
+</div>
 	<!--//footer-->
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -230,4 +270,29 @@ $(".tcdPageCode").createPage({
 });
 </script>
 </body>
+<script>
+    $(window).scroll(function(event){
+        var wScrollY = window.scrollY; // 当前滚动条位置
+        var wInnerH = window.innerHeight; // 设备窗口的高度（不会变）
+        var bScrollH = document.body.scrollHeight; // 滚动条总高度
+        if (wScrollY + wInnerH >= 4/10*bScrollH) {
+            $(".navi").css("background","rgb(14, 92, 67)");
+            $(".navi").css("-webkit-transition","linear 0.3s all");
+            $(".navi").css("transition","linear 0.3s all");
+            $("#search").css("border","none");
+            $("#search").css("background","#005238");
+            $("#search").css("-webkit-transition","linear 0.3s all");
+            $("#search").css("transition","linear 0.3s all");
+        }
+        if (wScrollY + wInnerH < 4/10*bScrollH) {
+            $(".navi").css("background","transparent");
+            $(".navi").css("-webkit-transition","linear 0.3s all");
+            $(".navi").css("transition","linear 0.3s all");
+            $("#search").css("border","0.1em white solid");
+            $("#search").css("background","none");
+            $("#search").css("-webkit-transition","linear 0.3s all");
+            $("#search").css("transition","linear 0.3s all");
+        }
+    });
+</script>
 </html>

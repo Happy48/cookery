@@ -19,6 +19,10 @@
     color:#fff;
     font-size: 1.2em;
 }
+#search input[type="text"]::-webkit-input-placeholder{
+    color: #fff;
+}
+
 #search input[type="submit"] {
     width: 30px;
     height: 30px;
@@ -50,16 +54,16 @@
     font-size: 17px;
     text-transform: uppercase;
     border-bottom: 2px solid transparent;
-    -webkit-transition: linear 0.5s all;
-    transition: linear 0.5s all;
+    -webkit-transition: linear 0.5s;
+    transition: linear 0.5s;
     font-weight: 600;
     padding: 5px 0;
 }
 #menu_div li a:hover,#menu_div li a.active,#login_part li a:hover,#login_part li a.active{
     color:#97824B;
     border-bottom: 2px solid #97824B;
-    -webkit-transition: linear 0.5s all;
-    transition: linear 0.5s all;
+    -webkit-transition: linear 0.5s;
+    transition: linear 0.5s;
     -webkit-transform: scale(1.15);
     -ms-transform: scale(1.15);
     transform: scale(1.15);
@@ -76,4 +80,9 @@
     width: 4%;
     display: inline-block;
     margin-left: 0.2em;
+}
+#personal_icon{
+    border-radius: 50%;
+    width:40px;
+    height:40px;
 }

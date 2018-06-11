@@ -986,12 +986,17 @@ p.reply a i{
 	font-size:2em;
 }
 .search{
+    position:absolute;
+    float:right;
+    right:1%;
+    width:30%;
+    top:20px;
 	border:none;
 	background:#005238;
-  margin:0px 5px 20px 20px;
+    margin:0px 5px 20px 20px;
 }
 .search input[type="text"] {
-  z-index:999;
+    z-index:999;
 	outline: none;
 	padding:8px 15px;
 	background: none;
@@ -1000,6 +1005,11 @@ p.reply a i{
 	color:#fff;	
 	font-size: 1.2em;
 }
+
+.search input[type="text"] ::-webkit-input-placeholder{
+     color:#fff;
+ }
+
 .search input[type="submit"] {	
 	width: 30px;
 	height: 30px;

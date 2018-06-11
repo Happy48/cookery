@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/navi_unlogin.css" rel="stylesheet" type="text/css" media="all" />
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
     <!-- Custom Theme files -->
@@ -51,11 +52,34 @@
 </head>
 <body>
 <div class="header">
-    <div class="container">
+    <div class="container navi">
+
         <div class="logo animated wow pulse" data-wow-duration="1000ms" data-wow-delay="500ms">
-            <h2 style="font-family: Helvetica"><a href="index.html"><img src="images/oo.png" alt="">大厨笔记</a></h2>
+            <h2 style="font-family: Helvetica"><a href="index.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/oo.png" alt="">大厨笔记</a></h2>
         </div>
-        <div class="clearfix"></div>
+
+        <div class="col-md-3" id="search">
+            <form>
+                <input type="text" placeholder="搜索笔记/食材" required="" >
+                <input type="submit" value="" >
+            </form>
+        </div>
+
+        <div id="menu_div">
+            <ul>
+                <li><a  href="index.html">首页</a></li>
+                <li><a  href="allblogs.html">笔记广场</a></li>
+            </ul>
+        </div>
+
+        <div id="login_part">
+            <ul>
+                <li><a  href="login.html">登录</a></li>
+                <li><a  href="register.html">注册</a></li>
+            </ul>
+        </div>
+
+
     </div>
     <!-- start search-->
     <div class="banner">
@@ -75,7 +99,7 @@
                     </div>
                     <a class='col-md-offset-7' href="register.html">马上注册！</a>
                     <div class="leave">
-                        <form>
+                        <form action="index_login.html">
                             <div class="single-grid wow fadeInLeft animated" data-wow-delay=".5s">
                                 <label class="hvr-rectangle-out">
                                     <input type="submit" value="登录">
@@ -90,4 +114,5 @@
 </div>
 <!--content-->
 </body>
+
 </html>

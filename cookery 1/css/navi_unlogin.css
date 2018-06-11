@@ -19,6 +19,11 @@
     color:#fff;
     font-size: 1.2em;
 }
+
+#search input[type="text"]::-webkit-input-placeholder{
+    color: #fff;
+}
+
 #search input[type="submit"] {
     width: 30px;
     height: 30px;
