@@ -2001,3 +2001,21 @@ td.add-check a {
   border-radius: 4px;
   vertical-align: middle;
 }
+
+input.ph::-webkit-input-placeholder{
+            color:white;
+        }
+        input.ph::-moz-placeholder{   /* Mozilla Firefox 19+ */
+            color:white;
+        }
+        input.ph:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+            color:white;
+        }
+        input.ph:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+            color:white;
+        }
+
+.content{
+  padding-left: 100px;
+  padding-right: 100px;
+}
