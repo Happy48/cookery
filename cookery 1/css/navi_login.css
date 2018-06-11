@@ -1,0 +1,79 @@
+#search-in h4,.grid-categories h4,.blog-bottom h4{
+    color: #005238;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size:2em;
+}
+#search{
+    border:0.1em white solid;
+    /*		background:#005238;*/
+    margin:-2px 5px 13px 20px;
+}
+#search input[type="text"] {
+    z-index:999;
+    outline: none;
+    padding:8px 15px;
+    background: none;
+    width: 87%;
+    border: none;
+    color:#fff;
+    font-size: 1.2em;
+}
+#search input[type="submit"] {
+    width: 30px;
+    height: 30px;
+    background: url(../images/search.png)no-repeat 0px 10px ;
+    padding: 0px 1px;
+    border: none;
+    cursor: pointer;
+    position:absolute;
+    outline: none;
+    right:0;
+}
+
+#menu_div{
+    position:absolute;
+    left:45%;
+    width:100%;
+}
+#menu_div li {
+    width: 70px;
+    display: inline-block;
+    margin-left: 1em;
+}
+#menu_div li a,#login_part li a{
+    z-index:6;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    text-align: center;
+    font-size: 17px;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    -webkit-transition: linear 0.5s all;
+    transition: linear 0.5s all;
+    font-weight: 600;
+    padding: 5px 0;
+}
+#menu_div li a:hover,#menu_div li a.active,#login_part li a:hover,#login_part li a.active{
+    color:#97824B;
+    border-bottom: 2px solid #97824B;
+    -webkit-transition: linear 0.5s all;
+    transition: linear 0.5s all;
+    -webkit-transform: scale(1.15);
+    -ms-transform: scale(1.15);
+    transform: scale(1.15);
+    font-weight: 700;
+}
+
+#login_part{
+    position:absolute;
+    left:90%;
+    top:15px;
+    width:100%;
+}
+#login_part li {
+    width: 4%;
+    display: inline-block;
+    margin-left: 0.2em;
+}
