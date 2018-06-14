@@ -69,6 +69,19 @@ public class NoteServiceImplTest {
         assertEquals(1,noteService.addCollect(3,13));
     }
 
+    @Test
+    public void isLike(){
+        assertEquals(0,noteService.isLike(1,59));
+        assertEquals(1,noteService.isLike(1,1));
+    }
+
+    @Test
+    public void isCollect(){
+        assertEquals(0,noteService.isCollect(1,20));
+        assertEquals(1,noteService.isCollect(1,1));
+    }
+
+
 //    @Test success
     public void testCreateNote(){
         List<String> subTagList=new ArrayList<String>();

@@ -21,4 +21,5 @@
 |/api/createNote | post  | 添加新笔记 token，noteName,noteCover,description,material,practice,tip,subtag(如"家常菜，下饭菜"，逗号隔开分类)  | {"code":1} 0表示成功 1表示子标签不在subtag范围之内 2表示用户不存在  |
 |/api/changeInfo | post  | 修改个人信息 token,userName,address,sex,birthday,introduction,phoneNumber,userPwd,email  | {"code":1} 0表示成功 1表示修改的用户名已存在 2表示修改的邮箱已存在 3表示用户不存在  |
 | /api/changeUserPic?token=xxx | post | 修改个人头像| {"code":1} 0表示成功 1表示失败  |
-
+| /api/isLike?token=xxx&noteid=xxx |get|{"code":1} 0表示已经有喜欢 1表示还未喜欢 2表示用户不存在  |
+| /api/isCollect?token=xxx&noteid=xxx |get|{"code":1} 0表示已经收藏 1表示还未收藏 2表示用户不存在  |

@@ -153,6 +153,37 @@ public class NoteServiceImpl implements NoteService {
         return 0;
     }
 
+    /**
+     * 得到某人是否喜欢某笔记
+     * @param userid
+     * @param noteid
+     * @return 喜欢，返回0；还未喜欢，返回1
+     */
+    public int isLike(int userid,int noteid){
+        List<Like>likeList=likeRepository.findByUserID(userid);
+        for (Like like:likeList) {
+            if (like.getNoteID() == noteid) {
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    /**
+     * 得到某人是否收藏了某笔记
+     * @param userid
+     * @param noteid
+     * @return 收藏了，返回0；还未收藏，返回1
+     */
+    public int isCollect(int userid,int noteid){
+        List<Collect>collectList=collectRepository.findByUserID(userid);
+        for (Collect collect:collectList) {
+            if (collect.getNoteID() == noteid) {
+                return 0;
+            }
+        }
+        return 1;
+    }
 
     /**
      * 新增笔记

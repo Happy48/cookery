@@ -57,6 +57,22 @@ public interface NoteService {
     int addLike(int userid,int noteid);
 
     /**
+     * 得到用户是否喜欢该笔记
+     * @param userid
+     * @param noteid
+     * @return 喜欢，返回0，还没有喜欢，返回1
+     */
+    int isLike(int userid,int noteid);
+
+    /**
+     * 得到用户是否收藏了该笔记
+     * @param userid
+     * @param noteid
+     * @return 收藏了，返回0；还未收藏，返回1
+     */
+    int isCollect(int userid,int noteid);
+
+    /**
      * 新增笔记
      * @param newnoteVO
      * @return 新增成功，返回0；新增失败，返回1
