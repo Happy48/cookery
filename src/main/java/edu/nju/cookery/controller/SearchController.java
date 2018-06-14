@@ -26,6 +26,11 @@ public class SearchController {
 
         return searchService.search(key,pageIndex);
     }
+    @CrossOrigin
+    @RequestMapping(value = "/api/searchTotal")
+    public int searchTotal(@RequestParam(name = "key") String key){
+        return searchService.searchTotal(key);
+    }
 
     @CrossOrigin
     @RequestMapping(value = "/api/searchFromPeople")
@@ -34,5 +39,11 @@ public class SearchController {
         int pageIndex=Integer.parseInt(page);
         int userId = loginService.getUserIDByName(name);
         return searchService.searchFromPeople(userId, key, pageIndex);
+    }
+    @CrossOrigin
+    @RequestMapping(value = "/api/searchFromPeopleTotal")
+    public int searchFromCertainPersonTotal(@RequestParam("name") String name, @RequestParam(name = "key") String key){
+        int userId = loginService.getUserIDByName(name);
+        return searchService.searchFromPeopleTotal(userId, key);
     }
 }

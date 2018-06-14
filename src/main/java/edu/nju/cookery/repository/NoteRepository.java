@@ -1,6 +1,7 @@
 package edu.nju.cookery.repository;
 
 import edu.nju.cookery.entity.Note;
+import org.hibernate.annotations.SelectBeforeUpdate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -34,6 +35,14 @@ public interface NoteRepository extends JpaRepository<Note,Integer> {
     Page<Note> findByNoteNameLike(String key, Pageable pageable);
 
     /**
+     * 搜索笔记的数量
+     * @param key
+     * @return
+     */
+    @Query(value = "select count(*) from Note n where n.noteName like %?1%")
+    int searchTotal(String key);
+
+    /**
      * 按照页数获取笔记
      * @param userID
      * @param pageable
@@ -50,5 +59,13 @@ public interface NoteRepository extends JpaRepository<Note,Integer> {
      */
     @Query(value = "select n from Note n where n.userID = ?1 and n.noteName like %?2%")
     Page<Note> findByUserIDAndNoteNameLike(int userId, String key, Pageable pageable);
+    /**
+     * 搜索笔记的数量
+     * @param userId
+     * @param key
+     * @return
+     */
+    @Query(value = "select count(*) from Note n where n.userID = ?1 and n.noteName like %?2%")
+    int findByUserIDAndNoteNameLikeTotal(int userId, String key);
 
 }

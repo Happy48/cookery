@@ -8,5 +8,9 @@ public interface SearchService {
 
     List<NoteVO> search(String key,int pageIndex);
 
+    int searchTotal(String key);
+
     List<NoteVO> searchFromPeople(int userId, String key, int pageIndex);
+
+    int searchFromPeopleTotal(int userId, String key);
 }
