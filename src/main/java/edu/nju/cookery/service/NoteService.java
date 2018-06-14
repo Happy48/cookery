@@ -23,6 +23,11 @@ public interface NoteService {
     List<NoteVO> getCollectedBlog(int userID);
 
     /**
+     * 获取总笔记数
+     */
+    int getBlogsTotal(int userID);
+
+    /**
      * 获得喜欢人数最多的若干篇笔记
      * @param num 笔记数量
      * @return

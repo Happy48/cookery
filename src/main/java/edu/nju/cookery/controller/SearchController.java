@@ -62,4 +62,10 @@ public class SearchController {
         return searchService.searchFromPeopleTotal(userId, key);
     }
 
+    @CrossOrigin
+    @RequestMapping(value = "/api/searchFromMyTotal")
+    public int searchFromMyTotal(@RequestParam("token") String token, @RequestParam(name = "key") String key){
+        int userId= tokenUtil.getUid(token);
+        return searchService.searchFromPeopleTotal(userId, key);
+    }
 }

@@ -65,7 +65,14 @@ public interface NoteRepository extends JpaRepository<Note,Integer> {
      * @param key
      * @return
      */
-    @Query(value = "select count(*) from Note n where n.userID = ?1 and n.noteName like %?2%")
+    @Query(value = "select count(n) from Note n where n.userID = ?1 and n.noteName like %?2%")
     int findByUserIDAndNoteNameLikeTotal(int userId, String key);
 
+    /**
+     * 笔记的数量
+     * @param userID
+     * @return
+     */
+    @Query(value = "select count(n) from Note n where n.userID = ?1")
+    int findByUserIDTotal(int userID);
 }

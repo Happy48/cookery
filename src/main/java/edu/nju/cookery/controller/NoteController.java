@@ -44,17 +44,44 @@ public class NoteController {
         return null;
     }
 
+    /**
+     * 获取别人的笔记页数
+     * @param name
+     * @return
+     */
+    @RequestMapping(value = "/api/userNoteListTotalByUserID",method = RequestMethod.GET)
+    @CrossOrigin
+    public int getNoteListTotalByUserID(@RequestParam("name") String name){
+        int userid = loginService.getUserIDByName(name);
+        if(userid != -1){
+            return noteService.getBlogsTotal(userid);
+        }
+        return 0;
+    }
+
 
     /**
-     * 按照页数获取某人的笔记列表
+     * 获取我的笔记页数
      * @param token
-     * @param page
      * @return
+     */
+    @RequestMapping(value = "/api/myNoteListTotal",method = RequestMethod.GET)
+    @CrossOrigin
+    public int getMyNoteListTotal(@RequestParam("token") String token){
+        int userid= tokenUtil.getUid(token);
+        if(userid != -1){
+            return noteService.getBlogsTotal(userid);
+        }
+        return 0;
+    }
+
+    /**
+     * 获取我的笔记列表
      */
     @RequestMapping(value = "/api/myNoteList",method = RequestMethod.GET)
     @CrossOrigin
     public List<NoteVO> getMyNoteList(@RequestParam("token") String token,
-                                            @RequestParam(name = "page",required = false,defaultValue = "0")String page){
+                                      @RequestParam(name = "page",required = false,defaultValue = "0")String page){
         int pageIndex=Integer.parseInt(page);
         int userid= tokenUtil.getUid(token);
         if(userid != -1){

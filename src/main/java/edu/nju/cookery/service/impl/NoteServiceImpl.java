@@ -67,6 +67,11 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
+    public int getBlogsTotal(int userID) {
+        return noteRepository.findByUserIDTotal(userID);
+    }
+
+    @Override
     public List<NoteVO> getTopPopularNote(int num) {
         List<Integer> likes = likeRepository.findPopularLike();
         List<NoteVO> recommend = new ArrayList<>();
