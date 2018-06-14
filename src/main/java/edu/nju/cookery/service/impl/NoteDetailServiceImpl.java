@@ -1,8 +1,6 @@
 package edu.nju.cookery.service.impl;
 
-import edu.nju.cookery.entity.Note;
-import edu.nju.cookery.entity.Post;
-import edu.nju.cookery.entity.Work;
+import edu.nju.cookery.entity.*;
 import edu.nju.cookery.repository.*;
 import edu.nju.cookery.service.NoteDetailService;
 import edu.nju.cookery.util.JsonUtil;
@@ -28,6 +26,10 @@ public class NoteDetailServiceImpl implements NoteDetailService {
     private WorkRepository workRepository;
     @Autowired
     private PostRepository postRepository;
+    @Autowired
+    private UserInfoRepository userInfoRepository;
+    @Autowired
+    private LoginRepository loginRepository;
 
     @Override
     public NoteDetailVO getNoteDetail(int noteId) {
@@ -111,7 +113,16 @@ public class NoteDetailServiceImpl implements NoteDetailService {
             commentVOList.add(commentVO);
         }
 
-        NoteDetailVO noteDetailVO = new NoteDetailVO(foodTitle, foodPic, foodDesc, foodLikes, foodCreateTime, foodCollect, noteId, materialVOList, stepVOList, workVOList, commentVOList);
+        int userID =         note.getUserID();
+;
+        UserVO userVO = null;
+        UserInfo userInfo = userInfoRepository.findByUserID(userID);
+        Login login = loginRepository.findByUserID(userID);
+        if(userInfo != null && login != null){
+            userVO = new UserVO(userID, login.getUsername(), userInfo.isSex(), userInfo.getIntroduction(), userInfo.getIcon());
+        }
+
+        NoteDetailVO noteDetailVO = new NoteDetailVO(foodTitle, foodPic, foodDesc, foodLikes, foodCreateTime, foodCollect, noteId, userVO, materialVOList, stepVOList, workVOList, commentVOList);
         return noteDetailVO;
     }
 }

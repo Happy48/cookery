@@ -13,12 +13,13 @@ public class NoteDetailVO {
     private int foodCollect;
     private int noteId;
 
+    private UserVO userVO;
     private List<MaterialVO> materialVOList;
     private List<StepVO> stepVOList;
     private List<WorkVO> workVOList;
     private List<CommentVO> commentVOList;
 
-    public NoteDetailVO(String foodTitle, String foodPic, String foodDesc, int foodLikes, Timestamp foodCreateTime, int foodCollect, int noteId, List<MaterialVO> materialVOList, List<StepVO> stepVOList, List<WorkVO> workVOList, List<CommentVO> commentVOList) {
+    public NoteDetailVO(String foodTitle, String foodPic, String foodDesc, int foodLikes, Timestamp foodCreateTime, int foodCollect, int noteId, UserVO userVO, List<MaterialVO> materialVOList, List<StepVO> stepVOList, List<WorkVO> workVOList, List<CommentVO> commentVOList) {
         this.foodTitle = foodTitle;
         this.foodPic = foodPic;
         this.foodDesc = foodDesc;
@@ -26,6 +27,7 @@ public class NoteDetailVO {
         this.foodCreateTime = foodCreateTime;
         this.foodCollect = foodCollect;
         this.noteId = noteId;
+        this.userVO = userVO;
         this.materialVOList = materialVOList;
         this.stepVOList = stepVOList;
         this.workVOList = workVOList;
@@ -88,6 +90,14 @@ public class NoteDetailVO {
         this.noteId = noteId;
     }
 
+    public UserVO getUserVO() {
+        return userVO;
+    }
+
+    public void setUserVO(UserVO userVO) {
+        this.userVO = userVO;
+    }
+
     public List<MaterialVO> getMaterialVOList() {
         return materialVOList;
     }
@@ -130,6 +140,7 @@ public class NoteDetailVO {
                 ", foodCreateTime=" + foodCreateTime +
                 ", foodCollect=" + foodCollect +
                 ", noteId=" + noteId +
+                ", userVO=" + userVO +
                 ", materialVOList=" + materialVOList +
                 ", stepVOList=" + stepVOList +
                 ", workVOList=" + workVOList +
