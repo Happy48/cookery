@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +51,7 @@ public class NoteServiceImplTest {
     @Test
     public void getIndexRecommend() {
 
-        Map<String, String> indexRecommend = noteService.getIndexRecommend();
+        HashMap<String, Object> indexRecommend = noteService.getIndexRecommend();
         assertNotNull(indexRecommend.get("month"));
         assertNotNull(indexRecommend.get("recommend"));
         assertNotNull(indexRecommend.get("hot"));

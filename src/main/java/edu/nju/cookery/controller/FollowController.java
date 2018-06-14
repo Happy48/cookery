@@ -25,11 +25,11 @@ public class FollowController {
      */
     @RequestMapping(value = "/api/myFollowList",method = RequestMethod.GET)
     @CrossOrigin
-    public String getMyAttention(@RequestParam("token") String token){
+    public List<FollowVO> getMyAttention(@RequestParam("token") String token){
         int userid = tokenUtil.getUid(token);
         if(userid!=-1){
             List<FollowVO> followVOList = followService.getMyAttention(userid);
-            return JsonUtil.toJson(followVOList);
+            return followVOList;
         }
         return null;
     }

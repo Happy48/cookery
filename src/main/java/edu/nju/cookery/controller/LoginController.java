@@ -28,12 +28,12 @@ public class LoginController {
      */
     @RequestMapping(value = "/api/login",method = RequestMethod.POST)
     @CrossOrigin
-    public String login(@RequestParam("email") String email,
+    public HashMap<String,String> login(@RequestParam("email") String email,
                         @RequestParam("pass") String pass){
         HashMap<String,String> resultMap=new HashMap<>();
         if (ParamCheckUtil.judgeEmpty(email)||ParamCheckUtil.judgeEmpty(pass)){
             resultMap.put("code",3+"");
-            return JsonUtil.toJson(resultMap);
+            return resultMap;
         }
         int uid = loginService.login(email, pass);
 
@@ -48,18 +48,18 @@ public class LoginController {
             resultMap.put("message",token);
         }
 
-        return JsonUtil.toJson(resultMap);
+        return resultMap;
     }
 
 
     @RequestMapping(value = "/api/register",method = RequestMethod.POST)
-    public String register(@RequestParam("name")String name,
+    public HashMap<String,String> register(@RequestParam("name")String name,
                            @RequestParam("pass")String pass,
                            @RequestParam("email")String email){
         HashMap<String,String> resultMap=new HashMap<>();
         int code=loginService.register(name,pass,email);
         resultMap.put("code",code+"");
-        return JsonUtil.toJson(resultMap);
+        return resultMap;
     }
 
     /**

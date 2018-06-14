@@ -1,7 +1,6 @@
 package edu.nju.cookery.controller;
 
 import edu.nju.cookery.service.PostService;
-import edu.nju.cookery.util.JsonUtil;
 import edu.nju.cookery.util.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,13 +25,13 @@ public class PostController {
      */
     @RequestMapping(value = "/api/leaveReply",method = RequestMethod.POST)
     @CrossOrigin
-    public String login(@RequestParam("token") String token,
-                        @RequestParam("noteId") int noteId, @RequestParam("content") String content){
+    public HashMap<String, String> login(@RequestParam("token") String token,
+                                         @RequestParam("noteId") int noteId, @RequestParam("content") String content){
         int userId = tokenUtil.getUid(token);
 
         HashMap<String,String> resultMap=new HashMap<>();
         int result = postService.leaveNote(userId, noteId, 0, content);
         resultMap.put("code",result+"");
-        return JsonUtil.toJson(resultMap);
+        return resultMap;
     }
 }

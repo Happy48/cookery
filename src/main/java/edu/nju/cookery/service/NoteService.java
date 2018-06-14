@@ -38,7 +38,7 @@ public interface NoteService {
      */
     List<NoteVO> getNoteListByUserIdAndPage(int userID, int page);
 
-    HashMap<String,String> getIndexRecommend();
+    HashMap<String, Object> getIndexRecommend();
 
     /**
      * 笔记收藏/取消收藏

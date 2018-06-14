@@ -3,7 +3,6 @@ package edu.nju.cookery.controller;
 import edu.nju.cookery.service.CategoryService;
 import edu.nju.cookery.service.LoginService;
 import edu.nju.cookery.service.NoteService;
-import edu.nju.cookery.util.JsonUtil;
 import edu.nju.cookery.util.TokenUtil;
 import edu.nju.cookery.vo.NewNoteVO;
 import edu.nju.cookery.vo.NoteVO;
@@ -34,13 +33,13 @@ public class NoteController {
      */
     @RequestMapping(value = "/api/userNoteList",method = RequestMethod.GET)
     @CrossOrigin
-    public String getNoteListByUserID(@RequestParam("name") String name,
+    public List<NoteVO> getNoteListByUserID(@RequestParam("name") String name,
                         @RequestParam(name = "page",required = false,defaultValue = "0")String page){
         int pageIndex=Integer.parseInt(page);
         int userid = loginService.getUserIDByName(name);
         if(userid != -1){
             List<NoteVO> noteVOList = noteService.getNoteListByUserIdAndPage(userid, pageIndex);
-            return JsonUtil.toJson(noteVOList);
+            return noteVOList;
         }
         return null;
     }
@@ -52,12 +51,12 @@ public class NoteController {
      */
     @RequestMapping(value = "/api/userCollection",method = RequestMethod.GET)
     @CrossOrigin
-    public String getCollectNoteListByUserID(@RequestParam("token") String token){
+    public List<NoteVO> getCollectNoteListByUserID(@RequestParam("token") String token){
         int userid = tokenUtil.getUid(token);
 
         if(userid != -1){
             List<NoteVO> noteVOList=noteService.getCollectedBlog(userid);
-            return JsonUtil.toJson(noteVOList);
+            return noteVOList;
         }
         return null;
     }
@@ -69,9 +68,9 @@ public class NoteController {
      */
     @RequestMapping(value = "/api/guessLike",method = RequestMethod.GET)
     @CrossOrigin
-    public String getRecommendNote(@RequestParam("number") int number){
+    public List<NoteVO> getRecommendNote(@RequestParam("number") int number){
         List<NoteVO> noteVOList =noteService.getTopPopularNote(number);
-        return JsonUtil.toJson(noteVOList);
+        return noteVOList;
     }
 
     /**
@@ -80,9 +79,9 @@ public class NoteController {
      */
     @RequestMapping(value ="/api/indexRecommend")
     @CrossOrigin
-    public String getIndexRecommend(){
-        HashMap<String, String> result = noteService.getIndexRecommend();
-        return JsonUtil.toJson(result);
+    public HashMap<String, Object> getIndexRecommend(){
+        HashMap<String, Object> result = noteService.getIndexRecommend();
+        return result;
     }
 
     /**
@@ -93,7 +92,7 @@ public class NoteController {
      */
     @CrossOrigin
     @RequestMapping(value = "/api/collect",method = RequestMethod.GET)
-    public String collectNote(@RequestParam("token") String token, @RequestParam(name = "noteid") int noteid){
+    public HashMap<String, String> collectNote(@RequestParam("token") String token, @RequestParam(name = "noteid") int noteid){
         HashMap<String,String> resultMap=new HashMap<>();
         int userid= tokenUtil.getUid(token);
         if(userid!=-1){
@@ -103,7 +102,7 @@ public class NoteController {
         else{
             resultMap.put("code","2");
         }
-        return JsonUtil.toJson(resultMap);
+        return resultMap;
     }
 
     /**
@@ -114,7 +113,7 @@ public class NoteController {
      */
     @CrossOrigin
     @RequestMapping(value = "/api/like",method = RequestMethod.GET)
-    public String likeNote(@RequestParam("token") String token, @RequestParam(name = "noteid") int noteid){
+    public HashMap<String, String> likeNote(@RequestParam("token") String token, @RequestParam(name = "noteid") int noteid){
         HashMap<String,String> resultMap=new HashMap<>();
         int userid= tokenUtil.getUid(token);
         if(userid!=-1){
@@ -124,7 +123,7 @@ public class NoteController {
         else{
             resultMap.put("code","2");
         }
-        return JsonUtil.toJson(resultMap);
+        return resultMap;
     }
 
     /**
@@ -141,10 +140,10 @@ public class NoteController {
      */
     @CrossOrigin
     @RequestMapping(value = "/api/createNote",method = RequestMethod.POST)
-    public String createNote(@RequestParam("token") String token,@RequestParam("noteName") String noteName,
-                             @RequestParam("noteCover") String noteCover,@RequestParam("description") String description,
-                             @RequestParam("material") String material,@RequestParam("practice") String practice,
-                             @RequestParam("tip") String tip,@RequestParam("subtag") String subtag){
+    public HashMap<String, String> createNote(@RequestParam("token") String token, @RequestParam("noteName") String noteName,
+                                              @RequestParam("noteCover") String noteCover, @RequestParam("description") String description,
+                                              @RequestParam("material") String material, @RequestParam("practice") String practice,
+                                              @RequestParam("tip") String tip, @RequestParam("subtag") String subtag){
 
         HashMap<String,String> resultMap=new HashMap<>();
         int userid= tokenUtil.getUid(token);
@@ -159,7 +158,7 @@ public class NoteController {
         else{
             resultMap.put("code","2");
         }
-        return JsonUtil.toJson(resultMap);
+        return resultMap;
     }
 
     /**
@@ -169,8 +168,8 @@ public class NoteController {
      */
     @CrossOrigin
     @RequestMapping(value = "/api/getNoteList",method = RequestMethod.GET)
-    public String getNoteList(@RequestParam("class")String className){
+    public List<NoteVO> getNoteList(@RequestParam("class")String className){
         List<NoteVO> noteVOList  = categoryService.getNoteByClazz(className);
-        return JsonUtil.toJson(noteVOList);
+        return noteVOList;
     }
 }

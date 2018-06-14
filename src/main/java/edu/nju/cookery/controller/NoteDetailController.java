@@ -14,8 +14,8 @@ public class NoteDetailController {
 
     @RequestMapping(value = "/api/getNoteDetail",method = RequestMethod.GET)
     @CrossOrigin
-    public String getNoteDetail(@RequestParam("noteId") int noteId){
+    public NoteDetailVO getNoteDetail(@RequestParam("noteId") int noteId){
         NoteDetailVO noteDetailVO = noteDetailService.getNoteDetail(noteId);
-        return noteDetailVO.toString();//???????
+        return noteDetailVO;//???????
     }
 }

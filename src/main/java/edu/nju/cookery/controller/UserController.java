@@ -3,11 +3,9 @@ package edu.nju.cookery.controller;
 import edu.nju.cookery.service.LoginService;
 import edu.nju.cookery.service.UserService;
 import edu.nju.cookery.util.DateHelper;
-import edu.nju.cookery.util.JsonUtil;
 import edu.nju.cookery.util.TokenUtil;
 import edu.nju.cookery.vo.UserExceptIconVO;
 import edu.nju.cookery.vo.UserVO;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,11 +30,11 @@ public class UserController {
      */
     @RequestMapping(value = "/api/userInfo",method = RequestMethod.GET)
     @CrossOrigin
-    public String getUserInfo(@RequestParam("name") String name){
+    public UserVO getUserInfo(@RequestParam("name") String name){
         int userid = loginService.getUserIDByName(name);
         if(userid != -1){
             UserVO userVO = userService.getUserInfo(userid);
-            return JSONObject.fromObject(userVO).toString();//???
+            return userVO;//???
         }
         return null;
     }
@@ -56,10 +54,10 @@ public class UserController {
      */
     @RequestMapping(value="/api/changeInfo",method=RequestMethod.POST)
     @CrossOrigin
-    public String changeInfo(@RequestParam("token") String token,@RequestParam("userName") String userName, @RequestParam("address") String address,
-                             @RequestParam("sex") int sex, @RequestParam("birthday") String birthday,
-                             @RequestParam("introduction") String introduction, @RequestParam("phoneNumber") String phoneNumber,
-                             @RequestParam("userPwd") String userPwd, @RequestParam("email") String email){
+    public HashMap<String, String> changeInfo(@RequestParam("token") String token, @RequestParam("userName") String userName, @RequestParam("address") String address,
+                                              @RequestParam("sex") int sex, @RequestParam("birthday") String birthday,
+                                              @RequestParam("introduction") String introduction, @RequestParam("phoneNumber") String phoneNumber,
+                                              @RequestParam("userPwd") String userPwd, @RequestParam("email") String email){
         HashMap<String,String> resultMap=new HashMap<>();
         int uid= tokenUtil.getUid(token);
         if(uid != -1) {
@@ -68,11 +66,11 @@ public class UserController {
             UserExceptIconVO vo=new UserExceptIconVO(uid,userName,address,sex_boolean,birthdayStr,introduction,phoneNumber,userPwd,email);
             int code=userService.changeInfo(vo);
             resultMap.put("code",code+"");
-            return JsonUtil.toJson(resultMap);
+            return resultMap;
         }
         else{
             resultMap.put("code","3");
-            return JsonUtil.toJson(resultMap);
+            return resultMap;
         }
     }
 

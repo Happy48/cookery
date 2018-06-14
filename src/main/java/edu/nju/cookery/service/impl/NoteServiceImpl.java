@@ -101,11 +101,11 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public HashMap<String, String> getIndexRecommend() {
-        HashMap<String,String> result=new HashMap<>();
+    public HashMap<String, Object> getIndexRecommend() {
+        HashMap<String,Object> result=new HashMap<>();
         result.put("month",getCurrentMouth());
-        result.put("recommend",JsonUtil.toJson(getTopCollectNote(3)));
-        result.put("hot",JsonUtil.toJson(getTopPopularNote(3)));
+        result.put("recommend",getTopCollectNote(3));
+        result.put("hot",getTopPopularNote(4));
         return result;
     }
 

@@ -2,12 +2,14 @@ package edu.nju.cookery.controller;
 
 import edu.nju.cookery.service.LoginService;
 import edu.nju.cookery.service.SearchService;
-import edu.nju.cookery.util.JsonUtil;
+import edu.nju.cookery.vo.NoteVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class SearchController {
@@ -19,18 +21,18 @@ public class SearchController {
 
     @CrossOrigin
     @RequestMapping(value = "/api/search")
-    public String search(@RequestParam(name = "key") String key,@RequestParam(name = "page",required = false,defaultValue = "0")String page){
+    public List<NoteVO> search(@RequestParam(name = "key") String key, @RequestParam(name = "page",required = false,defaultValue = "0")String page){
         int pageIndex=Integer.parseInt(page);
 
-        return JsonUtil.toJson(searchService.search(key,pageIndex));
+        return searchService.search(key,pageIndex);
     }
 
     @CrossOrigin
     @RequestMapping(value = "/api/searchFromPeople")
-    public String searchFromCertainPerson(@RequestParam("name") String name, @RequestParam(name = "key") String key,
-                                          @RequestParam(name = "page",required = false,defaultValue = "0")String page){
+    public List<NoteVO> searchFromCertainPerson(@RequestParam("name") String name, @RequestParam(name = "key") String key,
+                                                @RequestParam(name = "page",required = false,defaultValue = "0")String page){
         int pageIndex=Integer.parseInt(page);
         int userId = loginService.getUserIDByName(name);
-        return JsonUtil.toJson(searchService.searchFromPeople(userId, key, pageIndex));
+        return searchService.searchFromPeople(userId, key, pageIndex);
     }
 }
