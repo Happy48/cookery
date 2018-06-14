@@ -30,4 +30,14 @@ public class SearchServiceImplTest {
         List<NoteVO> search = searchService.searchFromPeople(10, "饮", 0);
         assertTrue(search.size()!=0);
     }
+    @Test
+    public void searchFromPeopleTotalTest(){
+        int search = searchService.searchFromPeopleTotal(10, "饮");
+        assertTrue(search!=0);
+    }
+
+    @Test
+    public void searchTotal() {
+        System.out.printf(searchService.searchTotal("土豆")+"");
+    }
 }

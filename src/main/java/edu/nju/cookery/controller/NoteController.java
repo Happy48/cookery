@@ -127,6 +127,52 @@ public class NoteController {
     }
 
     /**
+     * 获得某人对某个笔记的喜欢
+     * @param token
+     * @param noteid
+     * @return 某人有喜欢某笔记，code为0；某人没有喜欢某笔记，code为1；不存在该用户，code为2
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/api/isLike",method = RequestMethod.GET)
+    public HashMap<String, String> isLike(@RequestParam("token") String token, @RequestParam(name = "noteid") int noteid){
+        HashMap<String,String> resultMap=new HashMap<>();
+        int userid= tokenUtil.getUid(token);
+        if(userid!=-1){
+            int code=noteService.isLike(userid,noteid);
+            resultMap.put("code",code+"");
+        }
+        else{
+            resultMap.put("code","2");
+        }
+        return resultMap;
+    }
+
+    /**
+     * 得到某人是否已经收藏了某笔记
+     * @param token
+     * @param noteid
+     * @return 收藏了，返回0；还没有收藏，返回1；不存在该用户，返回2
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/api/isCollect",method = RequestMethod.GET)
+    public HashMap<String, String> isCollect(@RequestParam("token") String token, @RequestParam(name = "noteid") int noteid){
+        HashMap<String,String> resultMap=new HashMap<>();
+        int userid= tokenUtil.getUid(token);
+        if(userid!=-1){
+            int code=noteService.isCollect(userid,noteid);
+            resultMap.put("code",code+"");
+        }
+        else{
+            resultMap.put("code","2");
+        }
+        return resultMap;
+    }
+
+
+
+
+
+    /**
      * 添加笔记
      * @param token
      * @param noteName

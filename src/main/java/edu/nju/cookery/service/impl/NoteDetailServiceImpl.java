@@ -1,8 +1,6 @@
 package edu.nju.cookery.service.impl;
 
-import edu.nju.cookery.entity.Note;
-import edu.nju.cookery.entity.Post;
-import edu.nju.cookery.entity.Work;
+import edu.nju.cookery.entity.*;
 import edu.nju.cookery.repository.*;
 import edu.nju.cookery.service.NoteDetailService;
 import edu.nju.cookery.util.JsonUtil;
@@ -28,6 +26,10 @@ public class NoteDetailServiceImpl implements NoteDetailService {
     private WorkRepository workRepository;
     @Autowired
     private PostRepository postRepository;
+    @Autowired
+    private UserInfoRepository userInfoRepository;
+    @Autowired
+    private LoginRepository loginRepository;
 
     @Override
     public NoteDetailVO getNoteDetail(int noteId) {
@@ -100,18 +102,36 @@ public class NoteDetailServiceImpl implements NoteDetailService {
         List<WorkVO> workVOList = new ArrayList<>();
         List<Work> works = workRepository.findByNoteID(noteId);
         for(Work work: works){
-            WorkVO workVO = new WorkVO(work.getUserID(), work.getPicture(), work.getDescription());
+            int userID  = work.getUserID();
+            String userName = loginRepository.findByUserID(userID).getUsername();
+            WorkVO workVO = new WorkVO(work.getUserID(), work.getPicture(), work.getDescription(), userName);
             workVOList.add(workVO);
         }
 
         List<CommentVO> commentVOList = new ArrayList<>();
         List<Post> posts = postRepository.findByNoteID(noteId);
         for(Post post: posts){
-            CommentVO commentVO = new CommentVO(post.getUserID(), post.getTime(), post.getContent());
+            int userID = post.getUserID();
+            UserVO userVO = null;
+            UserInfo userInfo = userInfoRepository.findByUserID(userID);
+            Login login = loginRepository.findByUserID(userID);
+            if(userInfo != null && login != null){
+                userVO = new UserVO(userID, login.getUsername(), userInfo.isSex(), userInfo.getIntroduction(), userInfo.getIcon());
+            }
+            CommentVO commentVO = new CommentVO(post.getUserID(), post.getTime(), post.getContent(), userVO.getUserName(), userVO.getIcon());
             commentVOList.add(commentVO);
         }
 
-        NoteDetailVO noteDetailVO = new NoteDetailVO(foodTitle, foodPic, foodDesc, foodLikes, foodCreateTime, foodCollect, noteId, materialVOList, stepVOList, workVOList, commentVOList);
+        int userID =         note.getUserID();
+;
+        UserVO userVO = null;
+        UserInfo userInfo = userInfoRepository.findByUserID(userID);
+        Login login = loginRepository.findByUserID(userID);
+        if(userInfo != null && login != null){
+            userVO = new UserVO(userID, login.getUsername(), userInfo.isSex(), userInfo.getIntroduction(), userInfo.getIcon());
+        }
+
+        NoteDetailVO noteDetailVO = new NoteDetailVO(foodTitle, foodPic, foodDesc, foodLikes, foodCreateTime, foodCollect, noteId, userVO, materialVOList, stepVOList, workVOList, commentVOList);
         return noteDetailVO;
     }
 }

@@ -34,6 +34,11 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
+    public int searchTotal(String key) {
+        return noteRepository.searchTotal(key);
+    }
+
+    @Override
     public List<NoteVO> searchFromPeople(int userId, String key, int pageIndex) {
         Pageable pageable = new PageRequest(pageIndex, 5);
 
@@ -43,5 +48,10 @@ public class SearchServiceImpl implements SearchService {
             searchResult.add(noteVOHelper.getNoteVO(note));
         }
         return searchResult;
+    }
+
+    @Override
+    public int searchFromPeopleTotal(int userId, String key) {
+        return noteRepository.findByUserIDAndNoteNameLikeTotal(userId,key);
     }
 }

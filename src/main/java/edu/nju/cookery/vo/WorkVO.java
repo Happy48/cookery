@@ -5,11 +5,13 @@ public class WorkVO {
     private int userId;
     private String picture;
     private String desc;
+    private String userName;
 
-    public WorkVO(int userId, String picture, String desc) {
+    public WorkVO(int userId, String picture, String desc, String userName) {
         this.userId = userId;
         this.picture = picture;
         this.desc = desc;
+        this.userName = userName;
     }
 
     public int getUserId() {
@@ -36,12 +38,21 @@ public class WorkVO {
         this.desc = desc;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     @Override
     public String toString() {
         return "WorkVO{" +
                 "userId=" + userId +
                 ", picture='" + picture + '\'' +
                 ", desc='" + desc + '\'' +
+                ", userName='" + userName + '\'' +
                 '}';
     }
 }

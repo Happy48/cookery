@@ -38,9 +38,9 @@ public class LoginController {
         int uid = loginService.login(email, pass);
 
         if (uid==-1){
-            resultMap.put("code","-1");
+            resultMap.put("code","1");
         }else if (uid==-2){
-            resultMap.put("code","-2");
+            resultMap.put("code","2");
         }else{
             resultMap.put("code","0");
             String token=createToken(email,pass);
