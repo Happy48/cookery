@@ -18,7 +18,7 @@ public class TokenUtil {
     public int getUid(String token){
         int uid;
         try {
-            uid=Integer.parseInt(stringRedisTemplate.opsForValue().get("aaa"));
+            uid=Integer.parseInt(stringRedisTemplate.opsForValue().get(token));
         }catch (Exception e){
             uid=-1;
         }

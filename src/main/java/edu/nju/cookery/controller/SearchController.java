@@ -2,6 +2,7 @@ package edu.nju.cookery.controller;
 
 import edu.nju.cookery.service.LoginService;
 import edu.nju.cookery.service.SearchService;
+import edu.nju.cookery.util.TokenUtil;
 import edu.nju.cookery.vo.NoteVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +19,8 @@ public class SearchController {
     private SearchService searchService;
     @Autowired
     private LoginService loginService;
+    @Autowired
+    private TokenUtil tokenUtil;
 
     @CrossOrigin
     @RequestMapping(value = "/api/search")
@@ -35,4 +38,15 @@ public class SearchController {
         int userId = loginService.getUserIDByName(name);
         return searchService.searchFromPeople(userId, key, pageIndex);
     }
+
+    @CrossOrigin
+    @RequestMapping(value = "/api/searchMyBlog")
+    public List<NoteVO> searchMyBlog(@RequestParam("token") String token, @RequestParam(name = "key") String key,
+                                                @RequestParam(name = "page",required = false,defaultValue = "0")String page){
+        int pageIndex=Integer.parseInt(page);
+
+        int userId= tokenUtil.getUid(token);
+        return searchService.searchFromPeople(userId, key, pageIndex);
+    }
+
 }
