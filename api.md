@@ -23,3 +23,5 @@
 | /api/changeUserPic?token=xxx | post | 修改个人头像| {"code":1} 0表示成功 1表示失败  |
 | /api/isLike?token=xxx&noteid=xxx |get|{"code":1} 0表示已经有喜欢 1表示还未喜欢 2表示用户不存在  |
 | /api/isCollect?token=xxx&noteid=xxx |get|{"code":1} 0表示已经收藏 1表示还未收藏 2表示用户不存在  |
+| /api/searchMyBlog?token=xxx&key=xxx[&page=1]  | get  | 从个人的博客里面搜索  |  [{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodCollect":2,"noteId":12}...] |
+| /api/myNoteList?token=xxx[&page=1] | get  | 获取我的笔记列表  |  [{"foodTitle":"xxx","foodPic":"xxx(url)","foodDesc":"xxx","foodLikes":1,"foodCreateTime":"xxx","foodCollect":"1,"noteId":12}...] |

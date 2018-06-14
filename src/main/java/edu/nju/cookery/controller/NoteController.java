@@ -44,6 +44,27 @@ public class NoteController {
         return null;
     }
 
+
+    /**
+     * 按照页数获取某人的笔记列表
+     * @param token
+     * @param page
+     * @return
+     */
+    @RequestMapping(value = "/api/myNoteList",method = RequestMethod.GET)
+    @CrossOrigin
+    public List<NoteVO> getMyNoteList(@RequestParam("token") String token,
+                                            @RequestParam(name = "page",required = false,defaultValue = "0")String page){
+        int pageIndex=Integer.parseInt(page);
+        int userid= tokenUtil.getUid(token);
+        if(userid != -1){
+            List<NoteVO> noteVOList = noteService.getNoteListByUserIdAndPage(userid, pageIndex);
+            return noteVOList;
+        }
+        return null;
+    }
+
+
     /**
      * 获取某人收藏的笔记列表
      * @param token
