@@ -11,5 +11,10 @@ public interface CategoryService {
      * @param clazz
      * @return
      */
-    List<NoteVO> getNoteByClazz(String clazz);
+    public List<NoteVO> getNoteByClazz(String clazz,int page) ;
+
+    /**
+     * 获得总条数
+     */
+    public int getNoteTotalByClazz(String clazz) ;
 }

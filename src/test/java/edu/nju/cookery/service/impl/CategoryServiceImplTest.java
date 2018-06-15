@@ -19,6 +19,6 @@ public class CategoryServiceImplTest {
 
     @Test
     public void getNoteByClazz() {
-        assertEquals(7, categoryService.getNoteByClazz("汤羹").size());
+        assertEquals(7, categoryService.getNoteByClazz("汤羹",0).size());
     }
 }

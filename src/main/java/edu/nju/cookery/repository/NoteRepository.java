@@ -21,6 +21,14 @@ public interface NoteRepository extends JpaRepository<Note,Integer> {
     List<Note> findByUserID(int userID);
 
     /**
+     * 查看所有笔记
+     * @param pageable
+     * @return
+     */
+    Page<Note> findAll(Pageable pageable);
+
+
+    /**
      * 查找笔记
      * @param noteID 笔记Id
      * @return
@@ -39,7 +47,7 @@ public interface NoteRepository extends JpaRepository<Note,Integer> {
      * @param key
      * @return
      */
-    @Query(value = "select count(*) from Note n where n.noteName like %?1%")
+    @Query(value = "select count(n) from Note n where n.noteName like %?1%")
     int searchTotal(String key);
 
     /**
@@ -75,4 +83,11 @@ public interface NoteRepository extends JpaRepository<Note,Integer> {
      */
     @Query(value = "select count(n) from Note n where n.userID = ?1")
     int findByUserIDTotal(int userID);
+
+    /**
+     * 获取总条数
+     * @return
+     */
+    @Query(value = "select count(n) from Note n ")
+    int findAllTotal();
 }

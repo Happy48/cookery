@@ -262,8 +262,20 @@ public class NoteController {
      */
     @CrossOrigin
     @RequestMapping(value = "/api/getNoteList",method = RequestMethod.GET)
-    public List<NoteVO> getNoteList(@RequestParam("class")String className){
-        List<NoteVO> noteVOList  = categoryService.getNoteByClazz(className);
+    public List<NoteVO> getNoteList(@RequestParam("class")String className,@RequestParam("page")int page){
+        List<NoteVO> noteVOList  = categoryService.getNoteByClazz(className,page);
         return noteVOList;
+    }
+
+    /**
+     * 根据分类寻找笔记的总条数
+     * @param className
+     * @return
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/api/getNoteListTotal",method = RequestMethod.GET)
+    public int getNoteListTotal(@RequestParam("class")String className){
+
+        return categoryService.getNoteTotalByClazz(className);
     }
 }
