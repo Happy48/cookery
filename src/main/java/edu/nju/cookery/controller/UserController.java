@@ -9,7 +9,7 @@ import edu.nju.cookery.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 
 @RestController
@@ -61,7 +61,7 @@ public class UserController {
         HashMap<String,String> resultMap=new HashMap<>();
         int uid= tokenUtil.getUid(token);
         if(uid != -1) {
-            Date birthdayStr= DateHelper.strToUtilDate(birthday);
+            Date birthdayStr= DateHelper.strToSQLDate(birthday);
             boolean sex_boolean=(sex==0)?false:true;   // 女=0，男=1
             UserExceptIconVO vo=new UserExceptIconVO(uid,userName,address,sex_boolean,birthdayStr,introduction,phoneNumber,userPwd,email);
             int code=userService.changeInfo(vo);

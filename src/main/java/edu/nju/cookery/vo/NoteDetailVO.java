@@ -1,5 +1,7 @@
 package edu.nju.cookery.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -9,6 +11,7 @@ public class NoteDetailVO {
     private String foodPic;
     private String foodDesc;
     private int foodLikes;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Timestamp foodCreateTime;
     private int foodCollect;
     private int noteId;

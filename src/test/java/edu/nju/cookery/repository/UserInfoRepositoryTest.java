@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.Date;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.util.*;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -32,7 +32,7 @@ public class UserInfoRepositoryTest {
         userInfo.setAddress("内蒙古");
 
         String strDate="1987-05-30";
-        Date strtodate = DateHelper.strToUtilDate(strDate);
+        Date strtodate = DateHelper.strToSQLDate(strDate);
         userInfo.setBirthday(strtodate);
         userInfo.setIntroduction("你若安好便是晴天!");
         userInfo.setPhoneNumber("13819231229");

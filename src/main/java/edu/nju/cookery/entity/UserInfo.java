@@ -1,7 +1,7 @@
 package edu.nju.cookery.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * 用户信息（用户id，0女性1男性，生日，住址，联系电话，介绍）

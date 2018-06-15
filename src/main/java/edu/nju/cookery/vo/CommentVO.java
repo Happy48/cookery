@@ -1,10 +1,13 @@
 package edu.nju.cookery.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.sql.Timestamp;
 
 public class CommentVO {
 
     private int userId;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Timestamp time;
     private String content;
     private String userName;

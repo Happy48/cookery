@@ -26,7 +26,8 @@ public class UserServiceImpl implements UserService {
         UserInfo userInfo = userInfoRepository.findByUserID(userID);
         Login login = loginRepository.findByUserID(userID);
         if(userInfo != null && login != null){
-            userVO = new UserVO(userID, login.getUsername(), userInfo.isSex(), userInfo.getIntroduction(), userInfo.getIcon());
+            userVO = new UserVO(userID, login.getUsername(), userInfo.isSex(), userInfo.getIntroduction(), userInfo.getIcon(),
+                    login.getPassword(), userInfo.getBirthday(), login.getEmail(), userInfo.getPhoneNumber(), userInfo.getAddress());
         }
         return userVO;
     }
