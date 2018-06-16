@@ -90,4 +90,12 @@ public interface NoteRepository extends JpaRepository<Note,Integer> {
      */
     @Query(value = "select count(n) from Note n ")
     int findAllTotal();
+
+    /**
+     * 获取用户的笔记ID
+     * @param userID
+     * @return
+     */
+    @Query(value = "select n.noteID from Note n where n.userID=?1")
+    List<Integer> findNoteIDByUserID(int userID);
 }

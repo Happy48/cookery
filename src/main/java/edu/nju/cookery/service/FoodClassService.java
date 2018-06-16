@@ -7,4 +7,5 @@ import java.util.List;
 public interface FoodClassService {
 
     public List<SubTagVO> getFoodClass();
+    public List<SubTagVO> getFoodClass(int userID);
 }
