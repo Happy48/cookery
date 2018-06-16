@@ -29,4 +29,9 @@ public interface CategoryRepository  extends JpaRepository<Category,Integer> {
     @Query(value = "select count(c) from Category c where c.subtagID = ?1")
     int findTotalBySubtagID(int subtag_id);
 
+    @Query(value="SELECT c.category_id,c.note_id,c.subtag_id FROM  category c, note n WHERE n.user_id=?2 and c.subtag_id=?1 and n.note_id=c.note_id limit ?3,?4 ;",nativeQuery=true)
+    List<Category> findBySubtagIDAndUserID(int subtag_id,int useriD,int offset,int limit);
+
+    @Query(value="SELECT count(*) FROM  category c, note n WHERE n.user_id=?2 and c.subtag_id=?1 and n.note_id=c.note_id ",nativeQuery=true)
+    int findTotalBySubtagIDAndUserID(int subtag_id,int useriD);
 }

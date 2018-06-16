@@ -71,4 +71,31 @@ public class CategoryServiceImpl implements CategoryService {
         }
         return result;
     }
+
+    /**
+     * 根据标签名和用户找笔记
+     */
+    @Override
+    public List<NoteVO> getNoteByClazz(String clazz, int page, int userID) {
+        List<NoteVO> result = new ArrayList<>();
+        int subtag_id = subtagRepository.findByName(clazz).getId();
+        List<Category> list = categoryRepository.findBySubtagIDAndUserID(subtag_id,userID,9*page,9);
+
+        for(Category category: list){
+            int note_id  =category.getNoteID();
+            Note note = noteRepository.findByNoteID(note_id);
+            result.add(noteVOHelper.getNoteVO(note));
+        }
+        return result;
+    }
+
+    /**
+     * 根据标签名和用户找笔记，获得总条数
+     */
+    @Override
+    public int getNoteTotalByClazz(String clazz, int userID) {
+        int subtag_id = subtagRepository.findByName(clazz).getId();
+        int result=categoryRepository.findTotalBySubtagIDAndUserID(subtag_id,userID);
+        return result;
+    }
 }

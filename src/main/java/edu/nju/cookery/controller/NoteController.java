@@ -278,4 +278,41 @@ public class NoteController {
 
         return categoryService.getNoteTotalByClazz(className);
     }
+
+    /**
+     * 根据分类寻找我的或别人的笔记
+     * @param className
+     * @return
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/api/getNoteListByTag",method = RequestMethod.GET)
+    public List<NoteVO> getNoteListByTag(@RequestParam("class")String className,@RequestParam("page")int page,@RequestParam("token") String token,@RequestParam("name") String name){
+
+        int userid=0;
+        if(!token.equals("")){
+            userid= tokenUtil.getUid(token);
+        }else {
+            userid = loginService.getUserIDByName(name);
+        }
+        List<NoteVO> noteVOList  = categoryService.getNoteByClazz(className,page,userid);
+        return noteVOList;
+    }
+
+    /**
+     * 根据分类寻找我的或别人的笔记的总条数
+     * @param className
+     * @return
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/api/getNoteListTotalByTag",method = RequestMethod.GET)
+    public int getNoteListTotalByTag(@RequestParam("class")String className,@RequestParam("token") String token,@RequestParam("name") String name){
+        int userid=0;
+        if(!token.equals("")){
+            userid= tokenUtil.getUid(token);
+        }else {
+            userid = loginService.getUserIDByName(name);
+        }
+
+        return categoryService.getNoteTotalByClazz(className,userid);
+    }
 }
