@@ -35,4 +35,14 @@ public class SubtagRepositoryTest {
         System.out.println(subtags.size());
 
     }
+
+    @Test
+    public void findByNoteID(){
+        List<Subtag> subtags=subtagRepository.findByNoteId(1);
+        subtags.forEach(subtag -> {
+            System.out.println(subtag.getName());
+        });
+        System.out.println(subtags.size());
+
+    }
 }

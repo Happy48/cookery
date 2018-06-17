@@ -32,4 +32,12 @@ public class FoodClassServiceImplTest {
             System.out.println(subTagVO.getName());
         });
     }
+
+    @Test
+    public void getFoodClassByNoteId() {
+        List<SubTagVO> subTagVOS=foodClassService.getFoodClassByNoteId(1);
+        subTagVOS.forEach(subTagVO -> {
+            System.out.println(subTagVO.getName());
+        });
+    }
 }

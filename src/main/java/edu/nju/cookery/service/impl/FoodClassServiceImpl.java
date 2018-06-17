@@ -15,6 +15,7 @@ import java.util.List;
 
 @Component
 public class FoodClassServiceImpl implements FoodClassService {
+
     @Autowired
     private SubtagRepository subtagRepository;
     @Autowired
@@ -44,5 +45,16 @@ public class FoodClassServiceImpl implements FoodClassService {
             }
         }
         return subTagVOList;
+    }
+
+    @Override
+    public List<SubTagVO> getFoodClassByNoteId(int noteId) {
+        List<SubTagVO> list = new ArrayList<>();
+        List<Subtag> subtags = subtagRepository.findByNoteId(noteId);
+        for(Subtag subtag: subtags){
+            SubTagVO subTagVO = new SubTagVO(subtag.getId(), subtag.getName());
+            list.add(subTagVO);
+        }
+        return list;
     }
 }

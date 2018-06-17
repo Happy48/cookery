@@ -19,12 +19,14 @@ import java.util.List;
 @RestController
 @CrossOrigin
 public class FoodClassController {
+
     @Autowired
     private FoodClassService foodClassService;
     @Autowired
     private TokenUtil tokenUtil;
     @Autowired
     private LoginService loginService;
+
     /**
      * 获取全部笔记分类信息
      * @return
@@ -49,4 +51,9 @@ public class FoodClassController {
         return foodClassService.getFoodClass(userid);
     }
 
+    @RequestMapping(value = "/api/getTagByNoteId")
+    @CrossOrigin
+    public List<SubTagVO> getTagByNoteId(@RequestParam("noteId") int noteId){
+        return foodClassService.getFoodClassByNoteId(noteId);
+    }
 }

@@ -21,4 +21,7 @@ public interface SubtagRepository  extends JpaRepository<Subtag,Integer> {
 
     @Query(value="SELECT s.subtag_id,s.subtag_name FROM subtag s, category c, note n WHERE n.user_id=?1 and n.note_id=c.note_id and s.subtag_id=c.subtag_id",nativeQuery=true)
     List<Subtag> findByUserID(int userID);
+
+    @Query(value="SELECT s.subtag_id,s.subtag_name FROM subtag s, category c WHERE c.note_id=?1 and s.subtag_id=c.subtag_id",nativeQuery=true)
+    List<Subtag> findByNoteId(int noteId);
 }
