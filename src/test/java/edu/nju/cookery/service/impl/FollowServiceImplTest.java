@@ -22,4 +22,15 @@ public class FollowServiceImplTest {
         assertEquals(4,followService.getMyAttention(1).size());
         assertEquals(2,followService.getMyAttention(8).size());
     }
+
+    @Test
+    public void getFollowTotal(){
+        assertEquals(4,followService.getFollowTotal(1));
+    }
+
+    @Test
+    public void getFollowByUserIdAndPage(){
+        assertEquals("玉池桃红的厨房",followService.getFollowByUserIdAndPage(1,0).get(0).getName());
+
+    }
 }

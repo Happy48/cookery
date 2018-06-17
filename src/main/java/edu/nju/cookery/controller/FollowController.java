@@ -33,4 +33,35 @@ public class FollowController {
         }
         return null;
     }
+
+    /**
+     * 获取我的关注页数
+     * @param token
+     * @return
+     */
+    @RequestMapping(value = "/api/myFollowTotal",method = RequestMethod.GET)
+    @CrossOrigin
+    public int getMyFollowTotal(@RequestParam("token") String token){
+        int userid= tokenUtil.getUid(token);
+        if(userid != -1){
+            return followService.getFollowTotal(userid);
+        }
+        return 0;
+    }
+
+    /**
+     * 获取我的关注列表
+     */
+    @RequestMapping(value = "/api/myFollowListByPage",method = RequestMethod.GET)
+    @CrossOrigin
+    public List<FollowVO> getMyFollowListByPage(@RequestParam("token") String token,
+                                      @RequestParam(name = "page",required = false,defaultValue = "0")String page){
+        int pageIndex=Integer.parseInt(page);
+        int userid= tokenUtil.getUid(token);
+        if(userid != -1){
+            List<FollowVO> followVOList = followService.getFollowByUserIdAndPage(userid, pageIndex);
+            return followVOList;
+        }
+        return null;
+    }
 }
