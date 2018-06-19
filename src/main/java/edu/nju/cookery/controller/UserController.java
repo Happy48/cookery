@@ -40,6 +40,27 @@ public class UserController {
     }
 
     /**
+     * 获得用户个人信息（通过token）
+     * @param token
+     * @return
+     */
+    @RequestMapping(value = "/api/userInfoByToken",method = RequestMethod.GET)
+    @CrossOrigin
+    public UserVO userInfoByToken(@RequestParam("token") String token){
+        int userid = 0;
+        if(!token.equals("")){
+            userid= tokenUtil.getUid(token);
+            if(userid != -1){
+                UserVO userVO = userService.getUserInfo(userid);
+                return userVO;
+            }
+        }else {
+            return null;
+        }
+        return null;
+    }
+
+    /**
      * 修改用户个人信息
      * @param token
      * @param userName
