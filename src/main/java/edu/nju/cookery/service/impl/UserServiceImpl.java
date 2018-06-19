@@ -80,4 +80,17 @@ public class UserServiceImpl implements UserService {
         return 0;
     }
 
+    /**
+     * 修改用户个人头像
+     * @param uid
+     * @param imgSrc
+     * @return 修改成功，返回0；修改失败，返回1
+     */
+    public int changeHeadIcon(int uid,String imgSrc){
+        UserInfo userInfo=userInfoRepository.findByUserID(uid);
+        userInfo.setIcon(imgSrc);
+        userInfoRepository.saveAndFlush(userInfo);
+        return 0;
+    }
+
 }

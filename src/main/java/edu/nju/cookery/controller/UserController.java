@@ -61,6 +61,31 @@ public class UserController {
     }
 
     /**
+     * 修改用户个人头像
+     * @param token
+     *  @param imgUrl
+     * @return 修改成功，返回0；修改失败，返回1；不存在该用户，返回2
+     */
+    @RequestMapping(value = "/api/changeHeadIcon",method = RequestMethod.GET)
+    @CrossOrigin
+    public HashMap<String, String> userInfoByToken(@RequestParam("token") String token, @RequestParam("imgUrl") String imgUrl){
+        HashMap<String,String> resultMap=new HashMap<>();
+        int userid = 0;
+        if(!token.equals("")){
+            userid= tokenUtil.getUid(token);
+            if(userid != -1){
+                int code=userService.changeHeadIcon(userid,imgUrl);
+                resultMap.put("code",code+"");
+            }
+        }else {
+            resultMap.put("code","2");
+        }
+        return resultMap;
+    }
+
+
+
+    /**
      * 修改用户个人信息
      * @param token
      * @param userName

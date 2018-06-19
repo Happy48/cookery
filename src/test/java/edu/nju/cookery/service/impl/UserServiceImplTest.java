@@ -50,4 +50,9 @@ public class UserServiceImplTest {
         assertEquals(2, userService.changeInfo(vo2));
 
     }
+
+    @Test
+    public void changeHeadIcon(){
+        assertEquals(0,userService.changeHeadIcon(1,"https://cookery.oss-cn-beijing.aliyuncs.com/BF3FA20712B4ABB181B75F1FF669BE3F.jpg"));
+    }
 }

@@ -14,4 +14,12 @@ public interface UserService {
      */
     int changeInfo(UserExceptIconVO userExceptIconVO);
 
+    /**
+     * 修改用户个人头像
+     * @param uid
+     * @param imgSrc
+     * @return 修改成功，返回0；修改失败，返回1
+     */
+    int changeHeadIcon(int uid,String imgSrc);
+
 }

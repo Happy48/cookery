@@ -41,4 +41,11 @@ public class UserInfoRepositoryTest {
         userInfo.setUserID(13);
         userInfoRepository.saveAndFlush(userInfo);
     }
+
+    @Test
+    public void changeHeadIcon(){
+        UserInfo userInfo=userInfoRepository.findByUserID(1);
+        userInfo.setIcon("http://s1.cdn.xiachufang.com/2ed3f3524e084e94a615af0717071db3_1080w_1080h.jpg@2o_50sh_1pr_1l_160w_160h_1c_1e_90q_1wh");
+        userInfoRepository.saveAndFlush(userInfo);
+    }
 }
