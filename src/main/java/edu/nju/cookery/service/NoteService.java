@@ -5,6 +5,7 @@ import edu.nju.cookery.vo.NoteVO;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 public interface NoteService {
 
@@ -34,7 +35,12 @@ public interface NoteService {
      */
     List<NoteVO> getTopPopularNote(int num);
 
-
+    /**
+     * 获得推荐的笔记
+     * @param num
+     * @return
+     */
+    Set<NoteVO> getRecommendNote(int num);
     /**
      * 按照页数和用户id获取笔记列表
      * @param userID 用户id

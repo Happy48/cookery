@@ -6,7 +6,6 @@ import edu.nju.cookery.entity.Note;
 import edu.nju.cookery.entity.Category;
 import edu.nju.cookery.repository.*;
 import edu.nju.cookery.service.NoteService;
-import edu.nju.cookery.util.JsonUtil;
 import edu.nju.cookery.vo.NewNoteVO;
 import edu.nju.cookery.vo.NoteVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class NoteServiceImpl implements NoteService {
@@ -78,6 +74,20 @@ public class NoteServiceImpl implements NoteService {
 
         for(int i=0;i<num;i++){
             recommend.add(noteVOHelper.getNoteVO(noteRepository.findByNoteID(likes.get(i))));
+        }
+        return recommend;
+    }
+
+    @Override
+    public Set<NoteVO> getRecommendNote(int num) {
+        List<Note> notes = noteRepository.findAll();
+        Set<NoteVO> recommend = new HashSet<>();
+
+        // 初始化随机数
+        Random rand = new Random();
+        while (recommend.size()<num){
+            int index = rand.nextInt(notes.size());
+            recommend.add(noteVOHelper.getNoteVO(notes.get(index)));
         }
         return recommend;
     }

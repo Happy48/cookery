@@ -116,8 +116,8 @@ public class NoteController {
      */
     @RequestMapping(value = "/api/guessLike",method = RequestMethod.GET)
     @CrossOrigin
-    public List<NoteVO> getRecommendNote(@RequestParam("number") int number){
-        List<NoteVO> noteVOList =noteService.getTopPopularNote(number);
+    public Set<NoteVO> getRecommendNote(@RequestParam("number") int number){
+        Set<NoteVO> noteVOList =noteService.getRecommendNote(number);
         return noteVOList;
     }
 
