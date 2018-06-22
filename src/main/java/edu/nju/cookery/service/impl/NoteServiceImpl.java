@@ -119,8 +119,8 @@ public class NoteServiceImpl implements NoteService {
     public HashMap<String, Object> getIndexRecommend() {
         HashMap<String,Object> result=new HashMap<>();
         result.put("month",getCurrentMouth());
-        result.put("recommend",getTopCollectNote(3));
-        result.put("hot",getTopPopularNote(4));
+        result.put("recommend",getTopCollectNote(12));
+        result.put("hot",getTopPopularNote(12));
         return result;
     }
 
