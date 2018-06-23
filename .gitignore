@@ -27,3 +27,4 @@ api/*
 developers/developers.txt
 out/
 /out/
+/src/main/resources/static/
