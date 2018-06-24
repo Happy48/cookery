@@ -315,4 +315,10 @@ public class NoteController {
 
         return categoryService.getNoteTotalByClazz(className,userid);
     }
+
+    @CrossOrigin
+    @RequestMapping(value = "/api/getNoteByNoteID",method = RequestMethod.GET)
+    public NoteVO getNoteInfo(@RequestParam("noteID")int noteID){
+        return noteService.getNoteInfo(noteID);
+    }
 }

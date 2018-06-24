@@ -89,4 +89,10 @@ public interface NoteService {
      * @return 新增成功，返回0；新增失败，返回1
      */
     int createNote(NewNoteVO newnoteVO);
+
+
+    /**
+     * 根据笔记ID获取笔记信息
+     */
+    NoteVO getNoteInfo(int noteID);
 }

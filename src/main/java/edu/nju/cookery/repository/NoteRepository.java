@@ -1,6 +1,7 @@
 package edu.nju.cookery.repository;
 
 import edu.nju.cookery.entity.Note;
+import edu.nju.cookery.vo.NoteVO;
 import org.hibernate.annotations.SelectBeforeUpdate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -98,4 +99,5 @@ public interface NoteRepository extends JpaRepository<Note,Integer> {
      */
     @Query(value = "select n.noteID from Note n where n.userID=?1")
     List<Integer> findNoteIDByUserID(int userID);
+
 }

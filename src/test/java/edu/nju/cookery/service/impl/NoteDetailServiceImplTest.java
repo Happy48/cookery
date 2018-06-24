@@ -19,7 +19,7 @@ public class NoteDetailServiceImplTest {
 
     @Test
     public void getNoteDetail() {
-        System.out.println(noteDetailService.getNoteDetail(3).getStepVOList());
-        assertEquals(1, noteDetailService.getNoteDetail(3).getFoodLikes());
+        System.out.println(noteDetailService.getNoteDetail(183));
+//        assertEquals(1, noteDetailService.getNoteDetail(3).getFoodLikes());
     }
 }

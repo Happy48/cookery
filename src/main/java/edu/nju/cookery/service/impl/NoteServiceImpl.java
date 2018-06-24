@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -105,7 +106,7 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public List<NoteVO> getNoteListByUserIdAndPage(int userID, int page) {
-        Pageable pageable = new PageRequest(page, 5);
+        Pageable pageable = new PageRequest(page, 5, Sort.Direction.DESC,"createdTime");
 
         Page<Note> notes = noteRepository.findByUserID( userID , pageable);
         List<NoteVO> noteVOList =new ArrayList<>(notes.getSize());
@@ -210,7 +211,7 @@ public class NoteServiceImpl implements NoteService {
         Note note=new Note();
         note.setCreatedTime(newNoteVO.getCreatedTime());
         note.setDescription(newNoteVO.getDescription());
-        note.setMaterial(newNoteVO.getMaterial());
+        note.setMaterial(newNoteVO.getMaterial().replaceAll("\"","\'"));
         note.setNoteCover(newNoteVO.getNoteCover());
         note.setNoteName(newNoteVO.getNoteName());
         note.setPractice(newNoteVO.getPractice());
@@ -223,7 +224,7 @@ public class NoteServiceImpl implements NoteService {
         List<String> subTagList=newNoteVO.getSubTagList();
         for(String tagStr:subTagList){
             if(subtagRepository.findByName(tagStr)==null){
-                return 1;
+                return -1;
             }
             int tagId=subtagRepository.findByName(tagStr).getId();
             Category category=new Category();
@@ -231,7 +232,12 @@ public class NoteServiceImpl implements NoteService {
             category.setSubtagID(tagId);
             categoryRepository.saveAndFlush(category);
         }
-        return 0;
+        return newNoteId;
+    }
+
+    @Override
+    public NoteVO getNoteInfo(int noteID) {
+        return noteVOHelper.getNoteVO(noteRepository.findByNoteID(noteID));
     }
 
 
