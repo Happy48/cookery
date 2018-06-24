@@ -4,6 +4,7 @@ import edu.nju.cookery.Application;
 import edu.nju.cookery.service.NoteService;
 import edu.nju.cookery.util.DateHelper;
 import edu.nju.cookery.vo.NewNoteVO;
+import edu.nju.cookery.vo.UpdateNoteVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,5 +95,11 @@ public class NoteServiceImplTest {
 
 
         assertEquals(0,noteService.createNote(newNoteVO));
+    }
+
+    @Test
+    public void getNoteUpdateInfo(){
+        UpdateNoteVO noteVO=noteService.getNoteUpdateInfo(183);
+        System.out.println(noteVO);
     }
 }

@@ -1,13 +1,11 @@
 package edu.nju.cookery.service.impl;
 
-import edu.nju.cookery.entity.Collect;
-import edu.nju.cookery.entity.Like;
-import edu.nju.cookery.entity.Note;
-import edu.nju.cookery.entity.Category;
+import edu.nju.cookery.entity.*;
 import edu.nju.cookery.repository.*;
 import edu.nju.cookery.service.NoteService;
 import edu.nju.cookery.vo.NewNoteVO;
 import edu.nju.cookery.vo.NoteVO;
+import edu.nju.cookery.vo.UpdateNoteVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -238,6 +236,61 @@ public class NoteServiceImpl implements NoteService {
     @Override
     public NoteVO getNoteInfo(int noteID) {
         return noteVOHelper.getNoteVO(noteRepository.findByNoteID(noteID));
+    }
+
+    /**
+     * 获取更新笔记的信息
+     * @param noteID
+     * @return
+     */
+    @Override
+    public UpdateNoteVO getNoteUpdateInfo(int noteID) {
+        Note note=noteRepository.findByNoteID(noteID);
+        List<Category> categories=categoryRepository.findByNoteID(noteID);
+        List<String> tags=new ArrayList<>();
+        categories.forEach(category -> {
+            Subtag subtag=subtagRepository.findOne(category.getSubtagID());
+            tags.add(subtag.getName());
+        });
+        UpdateNoteVO updateNoteVO=new UpdateNoteVO(note.getNoteID(),note.getNoteName(),note.getNoteCover(),note.getDescription(),note.getMaterial(),note.getPractice(),note.getCreatedTime(),note.getTip(),tags);
+        return updateNoteVO;
+    }
+
+    /**
+     * 更新笔记
+     * @param updateNoteVO
+     * @return
+     */
+    @Override
+    public int updateNote(UpdateNoteVO updateNoteVO) {
+        // 添加笔记
+        Note note=noteRepository.findByNoteID(updateNoteVO.getNoteID());
+        note.setCreatedTime(updateNoteVO.getCreatedTime());
+        note.setDescription(updateNoteVO.getDescription());
+        note.setMaterial(updateNoteVO.getMaterial().replaceAll("\"","\'"));
+        note.setNoteCover(updateNoteVO.getNoteCover());
+        note.setNoteName(updateNoteVO.getNoteName());
+        note.setPractice(updateNoteVO.getPractice());
+        note.setTip(updateNoteVO.getTip());
+        Note savedObject=noteRepository.saveAndFlush(note);
+        int newNoteId=savedObject.getNoteID();
+        System.out.println(newNoteId);
+        // 添加标签
+        List<String> subTagList=updateNoteVO.getSubTagList();
+        for(String tagStr:subTagList){
+            if(subtagRepository.findByName(tagStr)==null){
+                return -1;
+            }
+            int tagId=subtagRepository.findByName(tagStr).getId();
+            Category category=categoryRepository.findBySubtagIDAndNoteID(tagId,newNoteId);
+            if(category==null){
+                category=new Category();
+            }
+            category.setNoteID(newNoteId);
+            category.setSubtagID(tagId);
+            categoryRepository.saveAndFlush(category);
+        }
+        return newNoteId;
     }
 
 

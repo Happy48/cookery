@@ -2,6 +2,7 @@ package edu.nju.cookery.service;
 
 import edu.nju.cookery.vo.NewNoteVO;
 import edu.nju.cookery.vo.NoteVO;
+import edu.nju.cookery.vo.UpdateNoteVO;
 
 import java.util.HashMap;
 import java.util.List;
@@ -95,4 +96,18 @@ public interface NoteService {
      * 根据笔记ID获取笔记信息
      */
     NoteVO getNoteInfo(int noteID);
+
+    /**
+     * 获取编辑笔记的信息
+     * @param noteID
+     * @return
+     */
+    UpdateNoteVO getNoteUpdateInfo(int noteID);
+
+    /**
+     * 更新笔记
+     * @param updateNoteVO
+     * @return
+     */
+    int updateNote(UpdateNoteVO updateNoteVO);
 }
