@@ -1,5 +1,8 @@
 package edu.nju.cookery.vo;
 
+import edu.nju.cookery.util.PicUrl;
+import org.springframework.beans.factory.annotation.Value;
+
 public class WorkVO {
 
     private int userId;
@@ -9,7 +12,7 @@ public class WorkVO {
 
     public WorkVO(int userId, String picture, String desc, String userName) {
         this.userId = userId;
-        this.picture = picture;
+        this.picture = picture.replaceAll("127.0.0.1",PicUrl.picUrl);
         this.desc = desc;
         this.userName = userName;
     }

@@ -1,6 +1,8 @@
 package edu.nju.cookery.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import edu.nju.cookery.util.PicUrl;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.sql.Timestamp;
 
@@ -13,12 +15,13 @@ public class CommentVO {
     private String userName;
     private String icon;
 
+
     public CommentVO(int userId, Timestamp time, String content, String userName, String icon) {
         this.userId = userId;
         this.time = time;
         this.content = content;
         this.userName = userName;
-        this.icon = icon;
+        this.icon = icon.replaceAll("127.0.0.1",PicUrl.picUrl);
     }
 
     public int getUserId() {

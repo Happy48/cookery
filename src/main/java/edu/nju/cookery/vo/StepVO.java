@@ -1,5 +1,8 @@
 package edu.nju.cookery.vo;
 
+import edu.nju.cookery.util.PicUrl;
+import org.springframework.beans.factory.annotation.Value;
+
 public class StepVO {
 
     private int id;
@@ -9,7 +12,7 @@ public class StepVO {
     public StepVO(int id, String desc, String picUrl) {
         this.id = id;
         this.desc = desc;
-        this.picUrl = picUrl;
+        this.picUrl = picUrl.replaceAll("127.0.0.1",PicUrl.picUrl);
     }
 
     public int getId() {

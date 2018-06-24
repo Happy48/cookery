@@ -1,6 +1,8 @@
 package edu.nju.cookery.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import edu.nju.cookery.util.PicUrl;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.sql.Timestamp;
 
@@ -15,9 +17,10 @@ public class NoteVO {
     private int foodCollect;
     private int noteId;
 
+
     public NoteVO(String foodTitle, String foodPic, String foodDesc, int foodLikes, Timestamp foodCreateTime, int foodCollect, int noteId) {
         this.foodTitle = foodTitle;
-        this.foodPic = foodPic;
+        this.foodPic = foodPic.replaceAll("127.0.0.1",PicUrl.picUrl);
         this.foodDesc = foodDesc;
         this.foodLikes = foodLikes;
         this.foodCreateTime = foodCreateTime;

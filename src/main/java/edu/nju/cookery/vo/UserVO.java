@@ -1,6 +1,8 @@
 package edu.nju.cookery.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import edu.nju.cookery.util.PicUrl;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.sql.Date;
 
@@ -18,12 +20,13 @@ public class UserVO {
     private String phoneNum;
     private String address;
 
+
     public UserVO(int userID, String userName, boolean sex, String introduction, String icon, String password, Date birthday, String email, String phoneNum, String address) {
         this.userID = userID;
         this.userName = userName;
         this.sex = sex;
         this.introduction = introduction;
-        this.icon = icon;
+        this.icon = icon.replaceAll("127.0.0.1",PicUrl.picUrl);
         this.password = password;
         this.birthday = birthday;
         this.email = email;
