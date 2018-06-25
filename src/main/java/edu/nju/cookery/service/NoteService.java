@@ -110,4 +110,11 @@ public interface NoteService {
      * @return
      */
     int updateNote(UpdateNoteVO updateNoteVO);
+
+    /**
+     * 查找用户收藏笔记
+     * @param username
+     * @return
+     */
+    List<NoteVO> getCollectedBlog(String username);
 }

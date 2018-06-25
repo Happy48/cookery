@@ -34,5 +34,11 @@ public class FollowRepositoryTest {
         Pageable pageable = new PageRequest(0, 5);
         assertEquals(3, followRepository.findByUserID(1,pageable).getContent().get(1).getFollowedID());
     }
+
+    @Test
+    public void findByUserName() {
+        assertEquals(4, followRepository.findByUsername("月亮晶晶").size());
+        assertEquals(2, followRepository.findByUsername("木可厨房").size());
+    }
 }
 

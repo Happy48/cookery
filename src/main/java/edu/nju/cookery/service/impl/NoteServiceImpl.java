@@ -293,6 +293,17 @@ public class NoteServiceImpl implements NoteService {
         return newNoteId;
     }
 
+    @Override
+    public List<NoteVO> getCollectedBlog(String username) {
+        List<NoteVO> noteList = new ArrayList<>();
+        List<Collect> collectList = collectRepository.findByUseranme(username);
+        for(Collect collect: collectList){
+            int noteId = collect.getNoteID();
+            noteList.add(noteVOHelper.getNoteVO(noteRepository.findByNoteID(noteId)));
+        }
+        return noteList;
+    }
+
 
     /**
      * 获取当前的月份

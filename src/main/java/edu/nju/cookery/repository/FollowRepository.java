@@ -34,4 +34,12 @@ public interface FollowRepository extends JpaRepository<Follow,Integer> {
      * @return
      */
     Page<Follow> findByUserID(int userID, Pageable pageable);
+
+    /**
+     * 查找关注列表
+     * @param username 本人name
+     * @return
+     */
+    @Query("select f from Login l, Follow f where f.userID = l.userID and l.username=?1")
+    List<Follow> findByUsername(String username);
 }

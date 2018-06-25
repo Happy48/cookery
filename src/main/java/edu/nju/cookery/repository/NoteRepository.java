@@ -99,5 +99,4 @@ public interface NoteRepository extends JpaRepository<Note,Integer> {
      */
     @Query(value = "select n.noteID from Note n where n.userID=?1")
     List<Integer> findNoteIDByUserID(int userID);
-
 }

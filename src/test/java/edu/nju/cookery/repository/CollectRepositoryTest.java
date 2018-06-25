@@ -37,4 +37,9 @@ public class CollectRepositoryTest {
         collectRepository.delete(collect);
     }
 
+    @Test
+    public void findByUserName() {
+        assertEquals(6,collectRepository.findByUseranme("梅子厨艺").size());
+        assertEquals(4,collectRepository.findByUseranme("玉池桃红的厨房").size());
+    }
 }

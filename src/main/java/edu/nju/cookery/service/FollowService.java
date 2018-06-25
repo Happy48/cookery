@@ -27,4 +27,11 @@ public interface FollowService {
      * @return
      */
     List<FollowVO> getFollowByUserIdAndPage(int userId, int page);
+
+    /**
+     * 获得关注人的列表
+     * @param username 用户id
+     * @return 关注人信息列表
+     */
+    List<FollowVO> getHisAttention(String username);
 }

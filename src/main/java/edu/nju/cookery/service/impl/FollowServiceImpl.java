@@ -62,4 +62,15 @@ public class FollowServiceImpl implements FollowService {
         }
         return followVOList;
     }
+
+    @Override
+    public List<FollowVO> getHisAttention(String username) {
+        List<FollowVO> userInfoList = new ArrayList<>();
+        List<Follow> followList = followRepository.findByUsername(username);
+        for(Follow follow: followList){
+            UserInfo userInfo = userInfoRepository.findByUserID(follow.getFollowedID());
+            FollowVO followVO = new FollowVO(loginRepository.findByUserID(follow.getFollowedID()).getUsername(), userInfo.getIcon());
+            userInfoList.add(followVO);
+        }
+        return userInfoList;    }
 }

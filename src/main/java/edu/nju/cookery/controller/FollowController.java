@@ -35,6 +35,18 @@ public class FollowController {
     }
 
     /**
+     * 获取用户关注列表
+     * @param username
+     * @return
+     */
+    @RequestMapping(value = "/api/hisFollowList",method = RequestMethod.GET)
+    @CrossOrigin
+    public List<FollowVO> getHisAttention(@RequestParam("username") String username){
+        List<FollowVO> followVOList = followService.getHisAttention(username);
+        return followVOList;
+    }
+
+    /**
      * 获取我的关注页数
      * @param token
      * @return

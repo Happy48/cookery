@@ -380,4 +380,16 @@ public class NoteController {
         return resultMap;
     }
 
+    /**
+     * 获取某人收藏的笔记列表
+     *
+     * @param username
+     * @return
+     */
+    @RequestMapping(value = "/api/hisCollection", method = RequestMethod.GET)
+    @CrossOrigin
+    public List<NoteVO> getHisCollectNoteListByUsername(@RequestParam("username") String username) {
+        List<NoteVO> noteVOList = noteService.getCollectedBlog(username);
+        return noteVOList;
+    }
 }

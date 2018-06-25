@@ -31,4 +31,12 @@ public interface CollectRepository  extends JpaRepository<Collect,Integer> {
      */
     @Query("select c.noteID from Collect c group by c.noteID order by count(c.userID) desc")
     List<Integer> findPopularLike(Pageable pageable);
+
+    /**
+     * 获取用户收藏列表
+     * @param username 用户name
+     * @return
+     */
+    @Query("select c from Collect c, Login l where l.userID = c.userID and l.username = ?1")
+    List<Collect> findByUseranme(String username);
 }
