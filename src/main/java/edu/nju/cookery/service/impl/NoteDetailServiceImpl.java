@@ -47,20 +47,19 @@ public class NoteDetailServiceImpl implements NoteDetailService {
         List<String> name = new ArrayList<>();
         List<String> unit = new ArrayList<>();
         try {
-            JSONArray jsonObject = JSONArray.fromObject(note.getMaterial());
-            for (Iterator<Object> iterator = jsonObject.iterator(); iterator.hasNext();) {
-                int cnt = 0;
-                JSONObject job = (JSONObject) iterator.next();
-                Iterator<Object> it=job.keys();
-                while (it.hasNext()){
-                    if(cnt%2==0){
-                        name.add(job.get(it.next()).toString());
+            com.alibaba.fastjson.JSONArray jarr = com.alibaba.fastjson.JSONArray.parseArray(note.getMaterial());
+            for (Iterator<Object> iterator = jarr.iterator(); iterator.hasNext();) {
+                com.alibaba.fastjson.JSONObject job = (com.alibaba.fastjson.JSONObject) iterator.next();
+                Set<String> s=job.keySet();
+                for (String string : s) {
+                    if(string.equals("name")){
+                        name.add(job.get(string).toString());
                     }else{
-                        unit.add(job.get(it.next()).toString());
+                        unit.add(job.get(string).toString());
                     }
-                    cnt++;
                 }
             }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -101,18 +100,16 @@ public class NoteDetailServiceImpl implements NoteDetailService {
         try {
             com.alibaba.fastjson.JSONArray jarr = com.alibaba.fastjson.JSONArray.parseArray(note.getPractice());
             for (Iterator<Object> iterator = jarr.iterator(); iterator.hasNext();) {
-                int cnt = 0;
                 com.alibaba.fastjson.JSONObject job = (com.alibaba.fastjson.JSONObject) iterator.next();
                 Set<String> s=job.keySet();
                 for (String string : s) {
-                    if(cnt%3 == 0){
+                    if(string.equals("img")){
                         img.add(job.get(string).toString());
-                    }else if(cnt%3 == 1){
+                    }else if(string.equals("information")){
                         information.add(job.get(string).toString());
                     }else{
                         id.add(job.get(string).toString());
                     }
-                    cnt++;
                 }
             }
         } catch (JSONException e) {
@@ -189,32 +186,50 @@ public class NoteDetailServiceImpl implements NoteDetailService {
         return noteDetailVO;
     }
 
-//    public static void main(String[] args){
-////        String material = "[{'name': '芋头', 'unit': '一个'}, {'name': '五花肉', 'unit': '适量'}, {'name': '冰糖', 'unit': '适量'}, {'name': '姜片', 'unit': '适量'}, {'name': '八角', 'unit': '两个'}, {'name': '桂皮', 'unit': '适量'}, {'name': '料酒', 'unit': '适量'}]";
-////        List<String> name = new ArrayList<>();
-////        List<String> unit = new ArrayList<>();
-////        try {
-////            JSONArray jsonObject = JSONArray.fromObject(material);
-////            for (Iterator<Object> iterator = jsonObject.iterator(); iterator.hasNext();) {
-////                int ct = 0;
-////                JSONObject job = (JSONObject) iterator.next();
-////                Iterator<Object> it=job.keys();
-////                while (it.hasNext()){
-////                    //System.out.println(job.get(it.next()));
-////                    if(ct%2==0){
-////                        name.add(job.get(it.next()).toString());
-////                    }else{
-////                        unit.add(job.get(it.next()).toString());
-////                    }
-////                    ct++;
-////                }
-////            }
-////        } catch (JSONException e) {
-////            e.printStackTrace();
-////        }
-////        System.out.println(name);
-////        System.out.println(unit);
+ //   public static void main(String[] args){
+//        String material = "[{'name': '芋头', 'unit': '一个'}, {'name': '五花肉', 'unit': '适量'}, {'name': '冰糖', 'unit': '适量'}, {'name': '姜片', 'unit': '适量'}, {'name': '八角', 'unit': '两个'}, {'name': '桂皮', 'unit': '适量'}, {'name': '料酒', 'unit': '适量'}]";
+//        List<String> name = new ArrayList<>();
+//        List<String> unit = new ArrayList<>();
+//        try {
+//            com.alibaba.fastjson.JSONArray jarr = com.alibaba.fastjson.JSONArray.parseArray(material);
+//            for (Iterator<Object> iterator = jarr.iterator(); iterator.hasNext();) {
+//                com.alibaba.fastjson.JSONObject job = (com.alibaba.fastjson.JSONObject) iterator.next();
+//                Set<String> s=job.keySet();
+//                for (String string : s) {
+//                    if(string.equals("name")){
+//                        name.add(job.get(string).toString());
+//                    }else{
+//                        unit.add(job.get(string).toString());
+//                    }
+//                }
+//            }
 //
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            JSONArray jsonObject = JSONArray.fromObject(material);
+//            for (Iterator<Object> iterator = jsonObject.iterator(); iterator.hasNext();) {
+//                int ct = 0;
+//                JSONObject job = (JSONObject) iterator.next();
+//                Iterator<Object> it=job.keys();
+//                while (it.hasNext()){
+//                    Object o = job.get(it.next());
+//                    System.out.println(o);
+//                    if(ct%2==0){
+//                        name.add(o.toString());
+//                    }else{
+//                        unit.add(o.toString());
+//                    }
+//                    ct++;
+//                }
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println(name);
+//        System.out.println(unit);
+
 //        String step = "[{\"information\": \"?????????????????170???\", \"id\": 1, \"img\": \"http://127.0.0.1:10086/http:s2cdnxiachufangcomd4c524228c0011e6b87c0242ac110003_199w_301hjpgimageView22w300interlace1q90\"}, {\"information\": \"????\", \"id\": 2, \"img\": \"http://127.0.0.1:10086/http:s1cdnxiachufangcomd4e5554e8c0011e6b87c0242ac110003_200w_300hjpg@2o_50sh_1pr_1l_300w_90q_1wh\"}, {\"information\": \"????????????????\", \"id\": 3, \"img\": \"http://127.0.0.1:10086/http:s1cdnxiachufangcomd5096b648c0011e6a9a10242ac110002_202w_300hjpg@2o_50sh_1pr_1l_300w_90q_1wh\"}, {\"information\": \"??????2?????????????????\", \"id\": 4, \"img\": \"http://127.0.0.1:10086/http:s2cdnxiachufangcomd5287c488c0011e6a9a10242ac110002_201w_301hjpgimageView22w300interlace1q90\"}, {\"information\": \"???????????????\", \"id\": 5, \"img\": \"http://127.0.0.1:10086/http:s1cdnxiachufangcomd54343f28c0011e6b87c0242ac110003_203w_301hjpg@2o_50sh_1pr_1l_300w_90q_1wh\"}, {\"information\": \"??????????????????????\", \"id\": 6, \"img\": \"http://127.0.0.1:10086/http:s2cdnxiachufangcomd56837e88c0011e6b87c0242ac110003_201w_299hjpgimageView22w300interlace1q90\"}, {\"information\": \"???????????????\", \"id\": 7, \"img\": \"http://127.0.0.1:10086/http:s2cdnxiachufangcomd587764e8c0011e6a9a10242ac110002_201w_300hjpgimageView22w300interlace1q90\"}, {\"information\": \"??????????????????????????????????170????25?30????????????????????????????????\", \"id\": 8, \"img\": \"http://127.0.0.1:10086/http:s2cdnxiachufangcomd5a3aeea8c0011e6a9a10242ac110002_201w_298hjpgimageView22w300interlace1q90\"}]";
 //        List<String> id = new ArrayList<>();
 //        List<String> img = new ArrayList<>();
@@ -222,18 +237,16 @@ public class NoteDetailServiceImpl implements NoteDetailService {
 //        try {
 //            com.alibaba.fastjson.JSONArray jarr = com.alibaba.fastjson.JSONArray.parseArray(step);
 //            for (Iterator<Object> iterator = jarr.iterator(); iterator.hasNext();) {
-//                int cnt = 0;
 //                com.alibaba.fastjson.JSONObject job = (com.alibaba.fastjson.JSONObject) iterator.next();
 //                Set<String> s=job.keySet();
 //                for (String string : s) {
-//                    if(cnt%3 == 0){
+//                    if(string.equals("img")){
 //                        img.add(job.get(string).toString());
-//                    }else if(cnt%3 == 1){
+//                    }else if(string.equals("information")){
 //                        information.add(job.get(string).toString());
 //                    }else{
 //                        id.add(job.get(string).toString());
 //                    }
-//                    cnt++;
 //                }
 //            }
 //
@@ -243,5 +256,5 @@ public class NoteDetailServiceImpl implements NoteDetailService {
 //        System.out.println(id);
 //        System.out.println(img);
 //        System.out.println(information);
-//    }
+ //   }
 }
