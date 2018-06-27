@@ -168,7 +168,7 @@ public class NoteDetailServiceImpl implements NoteDetailService {
                 userVO = new UserVO(userID, login.getUsername(), userInfo.isSex(), userInfo.getIntroduction(), userInfo.getIcon(),
                         login.getPassword(), userInfo.getBirthday(), login.getEmail(), userInfo.getPhoneNumber(), userInfo.getAddress());
             }
-            CommentVO commentVO = new CommentVO(post.getUserID(), post.getTime(), post.getContent(), userVO.getUserName(), userVO.getIcon());
+            CommentVO commentVO = new CommentVO(post.getPostID(), post.getMainPostID(), post.getUserID(), post.getTime(), post.getContent(), userVO.getUserName(), userVO.getIcon());
             commentVOList.add(commentVO);
         }
 

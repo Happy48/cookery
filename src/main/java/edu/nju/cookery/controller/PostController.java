@@ -25,12 +25,31 @@ public class PostController {
      */
     @RequestMapping(value = "/api/leaveReply",method = RequestMethod.POST)
     @CrossOrigin
-    public HashMap<String, String> login(@RequestParam("token") String token,
+    public HashMap<String, String> leaveReply(@RequestParam("token") String token,
                                          @RequestParam("noteId") int noteId, @RequestParam("content") String content){
         int userId = tokenUtil.getUid(token);
 
         HashMap<String,String> resultMap=new HashMap<>();
         int result = postService.leaveNote(userId, noteId, 0, content);
+        resultMap.put("code",result+"");
+        return resultMap;
+    }
+
+    /**
+     * 发帖评论
+     * @param token
+     * @param noteId
+     * @param content
+     * @return
+     */
+    @RequestMapping(value = "/api/leaveReplyToMainPost",method = RequestMethod.POST)
+    @CrossOrigin
+    public HashMap<String, String> leaveReplyToMainPost(@RequestParam("token") String token,
+                                         @RequestParam("noteId") int noteId, @RequestParam("mainpostId") int mainpostId, @RequestParam("content") String content){
+        int userId = tokenUtil.getUid(token);
+
+        HashMap<String,String> resultMap=new HashMap<>();
+        int result = postService.leaveNote(userId, noteId, mainpostId, content);
         resultMap.put("code",result+"");
         return resultMap;
     }
