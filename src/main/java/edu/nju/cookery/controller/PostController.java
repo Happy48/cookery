@@ -53,4 +53,13 @@ public class PostController {
         resultMap.put("code",result+"");
         return resultMap;
     }
+
+
+    @RequestMapping(value = "/api/getOriginalPostid",method = RequestMethod.GET)
+    @CrossOrigin
+    public HashMap<String, Integer> getOriginalPostid(@RequestParam("postid") int postid){
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("original", postService.getOriginalPostid(postid));
+        return map;
+    }
 }

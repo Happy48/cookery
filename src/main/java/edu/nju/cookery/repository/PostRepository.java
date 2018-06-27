@@ -16,4 +16,11 @@ public interface PostRepository  extends JpaRepository<Post,Integer> {
      * @return
      */
     List<Post> findByNoteID(int noteId);
+
+    /**
+     * 根据id获取帖子
+     * @param postId
+     * @return
+     */
+    Post findByPostID(int postId);
 }

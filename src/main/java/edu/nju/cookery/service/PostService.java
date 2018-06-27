@@ -11,4 +11,11 @@ public interface PostService {
      * @return
      */
     int leaveNote(int userId, int noteId, int mainPostId, String content);
+
+    /**
+     * 获得原始帖子的id
+     * @param postId
+     * @return
+     */
+    int getOriginalPostid(int postId);
 }

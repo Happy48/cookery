@@ -21,4 +21,10 @@ public class PostServiceImplTest {
     public void leaveNote() {
         assertEquals(0, postService.leaveNote(5, 5, 0, "这是测试评论"));
     }
+
+    @Test
+    public void testGetOriginalPostId(){
+        assertEquals(3, postService.getOriginalPostid(15));
+    }
+
 }

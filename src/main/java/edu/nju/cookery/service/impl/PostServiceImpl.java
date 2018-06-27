@@ -27,4 +27,13 @@ public class PostServiceImpl implements PostService {
         postRepository.save(post);
         return 0;
     }
+
+    @Override
+    public int getOriginalPostid(int postId) {
+        Post post = postRepository.findByPostID(postId);
+        while(post.getMainPostID() != 0){
+            post = postRepository.findByPostID(post.getMainPostID());
+        }
+        return post.getPostID();
+    }
 }

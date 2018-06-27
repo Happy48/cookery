@@ -19,4 +19,9 @@ public class PostRepositoryTest {
     public void findByNoteID() {
         assertEquals(7, postRepository.findByNoteID(1).size());
     }
+
+    @Test
+    public void findByPostID() {
+        assertEquals(4, postRepository.findByPostID(5).getMainPostID());
+    }
 }
