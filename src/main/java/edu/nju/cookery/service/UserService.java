@@ -22,4 +22,13 @@ public interface UserService {
      */
     int changeHeadIcon(int uid,String imgSrc);
 
+
+    /**
+     * 得到用户是否关注该博主
+     * @param userid
+     * @param focusid
+     * @return 关注，返回0，还没有关注，返回1
+     */
+    int isFocus(int userid,int focusid);
+
 }

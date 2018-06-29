@@ -76,4 +76,21 @@ public class FollowController {
         }
         return null;
     }
+
+
+    /**
+     * 获取首页博主推荐
+     * @param token
+     * @return
+     */
+    @RequestMapping(value = "/api/recommendFocus",method = RequestMethod.GET)
+    @CrossOrigin
+    public List<FollowVO> getRecommendFocus(@RequestParam("token") String token){
+        int userid= tokenUtil.getUid(token);
+        if(userid != -1){
+            return followService.getRecommendFocus(userid);
+        }
+        return followService.getMyAttention(userid);
+    }
+
 }

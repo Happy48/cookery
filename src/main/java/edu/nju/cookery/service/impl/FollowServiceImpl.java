@@ -30,7 +30,7 @@ public class FollowServiceImpl implements FollowService {
     public List<FollowVO> getMyAttention(int userID) {
         List<FollowVO> userInfoList = new ArrayList<>();
         List<Follow> followList = followRepository.findByUserID(userID);
-        for(Follow follow: followList){
+        for (Follow follow : followList) {
             UserInfo userInfo = userInfoRepository.findByUserID(follow.getFollowedID());
             FollowVO followVO = new FollowVO(loginRepository.findByUserID(follow.getFollowedID()).getUsername(), userInfo.getIcon());
             userInfoList.add(followVO);
@@ -53,9 +53,9 @@ public class FollowServiceImpl implements FollowService {
     public List<FollowVO> getFollowByUserIdAndPage(int userId, int page) {
         Pageable pageable = new PageRequest(page, 30);
 
-        Page<Follow> follows = followRepository.findByUserID( userId , pageable);
-        List<FollowVO> followVOList =new ArrayList<>(follows.getSize());
-        for (Follow follow:follows.getContent()){
+        Page<Follow> follows = followRepository.findByUserID(userId, pageable);
+        List<FollowVO> followVOList = new ArrayList<>(follows.getSize());
+        for (Follow follow : follows.getContent()) {
             UserInfo userInfo = userInfoRepository.findByUserID(follow.getFollowedID());
             FollowVO followVO = new FollowVO(loginRepository.findByUserID(follow.getFollowedID()).getUsername(), userInfo.getIcon());
             followVOList.add(followVO);
@@ -67,10 +67,25 @@ public class FollowServiceImpl implements FollowService {
     public List<FollowVO> getHisAttention(String username) {
         List<FollowVO> userInfoList = new ArrayList<>();
         List<Follow> followList = followRepository.findByUsername(username);
-        for(Follow follow: followList){
+        for (Follow follow : followList) {
             UserInfo userInfo = userInfoRepository.findByUserID(follow.getFollowedID());
             FollowVO followVO = new FollowVO(loginRepository.findByUserID(follow.getFollowedID()).getUsername(), userInfo.getIcon());
             userInfoList.add(followVO);
         }
-        return userInfoList;    }
+        return userInfoList;
+    }
+
+    @Override
+    public List<FollowVO> getRecommendFocus(int userId) {
+        List<FollowVO> userInfoList = new ArrayList<>();
+        List<UserInfo> userInfos = userInfoRepository.findAll();
+        for (UserInfo userInfo : userInfos) {
+            FollowVO followVO = new FollowVO(loginRepository.findByUserID(userInfo.getUserID()).getUsername(), userInfo.getIcon());
+            if(userInfo.getUserID()!=userId){
+                userInfoList.add(followVO);
+            }
+        }
+
+        return userInfoList;
+    }
 }

@@ -42,4 +42,9 @@ public interface FollowRepository extends JpaRepository<Follow,Integer> {
      */
     @Query("select f from Login l, Follow f where f.userID = l.userID and l.username=?1")
     List<Follow> findByUsername(String username);
+
+    /**
+     * 获取用户是否关注某人
+     */
+    Follow findByUserIDAndFollowedID(int userID, int followedID);
 }

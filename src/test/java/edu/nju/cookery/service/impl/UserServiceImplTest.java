@@ -55,4 +55,9 @@ public class UserServiceImplTest {
     public void changeHeadIcon(){
         assertEquals(0,userService.changeHeadIcon(1,"https://cookery.oss-cn-beijing.aliyuncs.com/BF3FA20712B4ABB181B75F1FF669BE3F.jpg"));
     }
+
+    @Test
+    public void isFocus(){
+        assertEquals(0,userService.isFocus(1,2));
+    }
 }

@@ -1,7 +1,9 @@
 package edu.nju.cookery.service.impl;
 
+import edu.nju.cookery.entity.Follow;
 import edu.nju.cookery.entity.Login;
 import edu.nju.cookery.entity.UserInfo;
+import edu.nju.cookery.repository.FollowRepository;
 import edu.nju.cookery.repository.LoginRepository;
 import edu.nju.cookery.repository.UserInfoRepository;
 import edu.nju.cookery.service.UserService;
@@ -19,6 +21,8 @@ public class UserServiceImpl implements UserService {
     private UserInfoRepository userInfoRepository;
     @Autowired
     private LoginRepository loginRepository;
+    @Autowired
+    private FollowRepository followRepository;
 
     @Override
     public UserVO getUserInfo(int userID) {
@@ -91,6 +95,22 @@ public class UserServiceImpl implements UserService {
         userInfo.setIcon(imgSrc);
         userInfoRepository.saveAndFlush(userInfo);
         return 0;
+    }
+
+    /**
+     * 得到用户是否关注该博主
+     * @param userid
+     * @param focusid
+     * @return 关注，返回0，还没有关注，返回1
+     */
+    @Override
+    public int isFocus(int userid, int focusid) {
+        Follow follow =followRepository.findByUserIDAndFollowedID(userid,focusid);
+        if(follow!=null){
+            return 0;
+        } else {
+            return 1;
+        }
     }
 
 }

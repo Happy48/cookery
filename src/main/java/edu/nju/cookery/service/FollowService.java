@@ -34,4 +34,11 @@ public interface FollowService {
      * @return 关注人信息列表
      */
     List<FollowVO> getHisAttention(String username);
+
+    /**
+     * 获得首页关注推荐
+     * @param userId
+     * @return
+     */
+    List<FollowVO> getRecommendFocus(int userId);
 }

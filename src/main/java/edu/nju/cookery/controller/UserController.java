@@ -120,4 +120,26 @@ public class UserController {
         }
     }
 
+    /**
+     * 获得某人对某个博主的关注
+     *
+     * @param token
+     * @param name
+     * @return 某人有关注某博主，code为0；某人没有喜欢某博主，code为1；不存在该用户，code为2
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/api/isFocus", method = RequestMethod.GET)
+    public HashMap<String, String> isFocus(@RequestParam("token") String token, @RequestParam(name = "name") String name) {
+        HashMap<String, String> resultMap = new HashMap<>();
+        int userid = tokenUtil.getUid(token);
+        int focusid = loginService.getUserIDByName(name);
+        if (userid != -1) {
+            int code = userService.isFocus(userid, focusid);
+            resultMap.put("code", code + "");
+        } else {
+            resultMap.put("code", "2");
+        }
+        return resultMap;
+    }
+
 }
